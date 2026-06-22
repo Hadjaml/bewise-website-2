@@ -1,0 +1,109 @@
+{
+  "content": {
+    "siteName": "Bewise",
+    "nav": [
+      "Méthode",
+      "Secteurs"
+    ],
+    "hero": {
+      "title": "Nous concevons des entreprises\nplus performantes\ngrâce à l’IA.",
+      "highlight": "plus performantes",
+      "intro": "Bewise aide les PME à éliminer les tâches à faible valeur ajoutée pour libérer du temps, sécuriser les processus et accélérer la croissance.",
+      "primaryCta": "Audit offert",
+      "secondaryCta": "Découvrir notre approche"
+    },
+    "trust": {
+      "label": "Ils nous ont fait confiance",
+      "clients": [
+        {
+          "name": "TotalEnergies",
+          "logo": "/assets/clients/totalenergies.png"
+        },
+        {
+          "name": "LogicSystem",
+          "logo": "/assets/clients/logicsystem.png"
+        },
+        {
+          "name": "Sopra Steria",
+          "logo": "/assets/clients/sopra-steria.png"
+        },
+        {
+          "name": "BNP Paribas",
+          "logo": "/assets/clients/bnp-paribas.png"
+        },
+        {
+          "name": "MeaL",
+          "logo": "/assets/clients/meal.png"
+        },
+        {
+          "name": "SN Barat",
+          "logo": "/assets/clients/sn-barat.png"
+        }
+      ]
+    },
+    "benefits": [
+      {
+        "icon": "clock",
+        "title": "Plus de temps",
+        "text": "Nous automatisons les tâches répétitives pour que vos équipes se concentrent sur l’essentiel."
+      },
+      {
+        "icon": "chart",
+        "title": "Plus de performance",
+        "text": "Des processus plus fluides, moins d’erreurs, des délais réduits, des résultats concrets."
+      },
+      {
+        "icon": "shield",
+        "title": "Plus de fiabilité",
+        "text": "Des solutions sécurisées, conformes et robustes, conçues pour durer."
+      },
+      {
+        "icon": "grow",
+        "title": "Prêt à grandir",
+        "text": "Des solutions évolutives qui s’adaptent à votre croissance et à vos enjeux."
+      }
+    ],
+    "sectors": {
+      "eyebrow": "Experts des PME",
+      "title": "Deux univers. Une expertise commune.",
+      "intro": "Nous comprenons vos métiers. Nous concevons des solutions qui créent de la valeur.",
+      "items": [
+        {
+          "label": "Cabinets comptables",
+          "title": "Automatisez. Sécurisez.\\nConcentrez-vous sur le conseil.",
+          "text": "Nous aidons les cabinets à automatiser la production, sécuriser les données et améliorer l’expérience client.",
+          "image": "/assets/sectors/comptable.jpg"
+        },
+        {
+          "label": "Entreprise du BTP",
+          "title": "Des chantiers mieux pilotés.\\nDes entreprises plus rentables.",
+          "text": "Nous optimisons vos processus de gestion, de suivi et de reporting pour des opérations plus efficaces.",
+          "image": "/assets/sectors/btp.jpg"
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Un premier pas simple et rapide",
+      "title": "Et si on trouvait ensemble vos gains de performance ?",
+      "points": [
+        "Analyse de vos processus clés",
+        "Identification des opportunités",
+        "Estimation des gains post intégrations",
+        "Recommandations concrètes"
+      ],
+      "button": "Demander mon audit offert"
+    },
+    "legal": {
+      "copyright": "© 2024 Bewise. Tous droits réservés.",
+      "legalLabel": "Mentions légales",
+      "privacyLabel": "Confidentialité",
+      "legalTitle": "Mentions légales",
+      "privacyTitle": "Confidentialité",
+      "legalText": "Bewise accompagne les PME dans l’automatisation de leurs processus et l’intégration de solutions d’intelligence artificielle.\n\nÉditeur du site : Bewise\nContact : contact@bewise.fr\nResponsable de publication : Direction Bewise\n\nLes contenus présents sur ce site sont fournis à titre informatif et peuvent être mis à jour à tout moment.",
+      "privacyText": "Les informations transmises via le formulaire d’audit sont utilisées uniquement pour répondre à votre demande et vous recontacter.\n\nBewise ne revend pas vos données personnelles. Vous pouvez demander l’accès, la modification ou la suppression de vos informations en nous contactant à contact@bewise.fr.",
+      "cookiesText": "Nous utilisons uniquement des cookies nécessaires au bon fonctionnement du site et à la mémorisation de votre choix.",
+      "cookiesButton": "Accepter"
+    }
+  },
+  "leads": []
+}
