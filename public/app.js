@@ -1,82 +1,3 @@
-const navTargets = {
-  expertise: '#expertise',
-  méthode: '#solutions',
-  methode: '#solutions',
-  approche: '#solutions',
-  secteurs: '#secteurs',
-  solutions: '#solutions',
-  'à propos': '#apropos',
-  ressources: '#ressources'
-};
-
-const defaultContent = {
-  nav: ['Méthode', 'Secteurs'],
-  hero: {
-    title: 'Nous concevons des entreprises\nplus performantes\ngrâce à l’IA.',
-    highlight: 'plus performantes',
-    intro:
-      'Bewise aide les PME à éliminer les tâches à faible valeur ajoutée pour libérer du temps, sécuriser les processus et accélérer la croissance.',
-    primaryCta: 'Audit offert',
-    secondaryCta: 'Découvrir notre approche'
-  },
-  trust: {
-    label: 'Des entreprises qui nous font confiance',
-    clients: [
-      { name: 'TotalEnergies', logo: '/assets/clients/totalenergies.png' },
-      { name: 'LogicSystem', logo: '/assets/clients/logicsystem.png' },
-      { name: 'Sopra Steria', logo: '/assets/clients/sopra-steria.png' },
-      { name: 'BNP Paribas', logo: '/assets/clients/bnp-paribas.png' },
-      { name: 'MeaL', logo: '/assets/clients/meal.png' },
-      { name: 'SN Barat', logo: '/assets/clients/sn-barat.png' }
-    ]
-  },
-  benefits: [],
-  sectors: {
-    eyebrow: 'Experts des PME',
-    title: 'Deux univers. Une expertise commune.',
-    intro: 'Nous comprenons vos métiers. Nous concevons des solutions qui créent de la valeur.',
-    items: [
-      {
-        label: 'Cabinets comptables',
-        title: 'Automatisez. Sécurisez.\nConcentrez-vous sur le conseil.',
-        text: 'Nous aidons les cabinets à automatiser la production, sécuriser les données et améliorer l’expérience client.',
-        image: '/assets/sectors/comptable.jpg'
-      },
-      {
-        label: 'BTP',
-        title: 'Des chantiers mieux pilotés.\nDes entreprises plus rentables.',
-        text: 'Nous optimisons vos processus de gestion, de suivi et de reporting pour des opérations plus efficaces.',
-        image: '/assets/sectors/btp.jpg'
-      }
-    ]
-  },
-  cta: {
-    eyebrow: 'Un premier pas simple et rapide',
-    title: 'Et si on trouvait ensemble vos gains de performance ?',
-    points: [
-      'Analyse de vos processus clés',
-      'Identification des opportunités',
-      'Estimation des gains post intégrations',
-      'Recommandations concrètes'
-    ],
-    button: 'Demander mon audit offert'
-  },
-  legal: {
-    copyright: '© 2024 Bewise. Tous droits réservés.',
-    legalLabel: 'Mentions légales',
-    privacyLabel: 'Confidentialité',
-    legalTitle: 'Mentions légales',
-    legalText:
-      'Bewise accompagne les PME dans l’automatisation de leurs processus et l’intégration de solutions d’intelligence artificielle.\n\nÉditeur du site : Bewise\nContact : contact@bewise.fr\nResponsable de publication : Direction Bewise\n\nLes contenus présents sur ce site sont fournis à titre informatif et peuvent être mis à jour à tout moment.',
-    privacyTitle: 'Confidentialité',
-    privacyText:
-      'Les informations transmises via le formulaire d’audit sont utilisées uniquement pour répondre à votre demande et vous recontacter.\n\nBewise ne revend pas vos données personnelles. Vous pouvez demander l’accès, la modification ou la suppression de vos informations en nous contactant à contact@bewise.fr.',
-    cookiesText:
-      'Nous utilisons uniquement des cookies nécessaires au bon fonctionnement du site et à la mémorisation de votre choix.',
-    cookiesButton: 'Accepter'
-  }
-};
-
 const menuButton = document.querySelector('[data-menu-toggle]');
 const nav = document.querySelector('[data-nav]');
 const form = document.querySelector('#lead-form');
@@ -85,354 +6,336 @@ const cookieBanner = document.querySelector('#cookie-banner');
 const cookieAcceptButton = document.querySelector('#cookie-accept');
 const modalButtons = document.querySelectorAll('[data-open-modal]');
 const closeModalButtons = document.querySelectorAll('[data-close-modal]');
+const metricsSection = document.querySelector('.metrics-section');
+const methodTimeline = document.querySelector('.method-timeline');
+const methodSteps = Array.from(document.querySelectorAll('.method-step'));
+const ecosystemSection = document.querySelector('.ecosystem-section');
+const ecosystemStage = document.querySelector('#ecosystem-stage');
+const ecosystemFlow = document.querySelector('.ecosystem-flow');
+const ecosystemTabs = Array.from(document.querySelectorAll('[data-ecosystem-tab]'));
+const ecosystemNodes = Array.from(document.querySelectorAll('[data-ecosystem-node]'));
 let lastFocusedElement = null;
-
-const sectorDetailContent = {
-  accounting: {
-    theme: 'purple',
-    label: 'Cabinets comptables',
-    icon: 'calculator',
-    title: 'Automatisez votre production.',
-    highlight: 'Gardez le contrôle de vos données.',
-    heroImage: '/assets/modal/accounting-security-transparent.png',
-    proofImage: '/assets/modal/accounting-lock.png',
-    intro: '',
-    automationTitle: 'Pourquoi les cabinets travaillent avec nous',
-    features: [
-      ['folder', 'Collecte et classement des pièces'],
-      ['refresh', 'Pré-comptabilité et traitements répétitifs'],
-      ['mail', 'Relances clients automatiques'],
-      ['chart', 'Reporting et tableaux de bord'],
-      ['puzzle', 'Workflows entre vos logiciels']
-    ],
-    proofTitle: '',
-    proof: [
-      'Gouvernance des données pensée dès la conception',
-      'Hébergement souverain ou infrastructure maîtrisée',
-      'Automatisations fiables et auditables',
-      'Intégration à votre environnement existant'
-    ]
-  },
-  btp: {
-    theme: 'orange',
-    label: 'Entreprises du BTP',
-    icon: 'helmet',
-    title: 'Moins d’administratif.',
-    highlight: 'Plus de terrain.',
-    heroImage: '/assets/modal/btp-app-excavator-transparent.png',
-    proofImage: '/assets/modal/btp-helmet-transparent.png',
-    intro: '',
-    automationTitle: 'Pourquoi les entreprises du BTP choisissent Bewise',
-    features: [
-      ['file', 'Devis et factures plus rapides'],
-      ['bell', 'Relances clients automatisées'],
-      ['clipboard', 'Suivi de chantiers et dépenses simplifié'],
-      ['archive', 'Classement des documents automatique'],
-      ['chart', 'Tableaux de bord clairs et à jour']
-    ],
-    proofTitle: '',
-    proof: [
-      'Solutions simples et intuitives, sans prise de tête',
-      'Mise en place rapide, résultats visibles vite',
-      'Moins d’erreurs, plus de réactivité',
-      'Un accompagnement proche de vos réalités terrain'
-    ]
-  }
+const sectionRoutes = {
+  '/': '#expertise',
+  '/notreapproche': '#approche',
+  '/ecosysteme': '#ecosysteme',
+  '/apropos': '#apropos',
+  '/nouscontacter': '#contact',
+  '/realisations': '#realisations'
+};
+const anchorRoutes = {
+  '#expertise': '/',
+  '#approche': '/notreapproche',
+  '#ecosysteme': '/ecosysteme',
+  '#apropos': '/apropos',
+  '#contact': '/nouscontacter',
+  '#realisations': '/realisations'
 };
 
-function escapeHtml(value) {
-  return String(value ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
+document.documentElement.classList.add('js-enabled');
+
+// Lightweight first-party analytics for the admin dashboard.
+function storageId(storage, key) {
+  const existing = storage.getItem(key);
+  if (existing) return existing;
+  const next = window.crypto?.randomUUID ? window.crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  storage.setItem(key, next);
+  return next;
 }
 
-function escapeCssString(value) {
-  return String(value ?? '').replaceAll('\\', '\\\\').replaceAll("'", "\\'").replaceAll('\n', '');
+function getVisitorId() {
+  return storageId(localStorage, 'bewiseVisitorId');
 }
 
-function normalizeLineBreaks(value) {
-  return String(value ?? '').replaceAll('\\n', '\n');
+function getSessionId() {
+  return storageId(sessionStorage, 'bewiseSessionId');
 }
 
-function appendTextWithBreaks(parent, text) {
-  normalizeLineBreaks(text)
-    .split('\n')
-    .forEach((line, index) => {
-      if (index > 0) parent.append(document.createElement('br'));
-      parent.append(document.createTextNode(line));
-    });
+function getTrafficSource() {
+  const params = new URLSearchParams(window.location.search);
+  const utmSource = params.get('utm_source');
+  if (utmSource) return utmSource;
+  const referrer = document.referrer;
+  if (!referrer) return 'Accès direct';
+
+  try {
+    const host = new URL(referrer).hostname.replace(/^www\./, '').toLowerCase();
+    if (host.includes('google.')) return 'Google';
+    if (host.includes('linkedin.')) return 'LinkedIn';
+    if (host.includes('instagram.')) return 'Instagram';
+    if (host.includes('tiktok.')) return 'TikTok';
+    if (host.includes('facebook.') || host.includes('meta.')) return 'Réseaux sociaux';
+    if (host.includes(window.location.hostname)) return 'Interne';
+    return 'Sites partenaires';
+  } catch {
+    return 'Accès direct';
+  }
 }
 
-function renderHighlighted(element, text, highlight) {
-  element.textContent = '';
-  const title = String(text || '');
-  const highlighted = String(highlight || '');
-  const index = highlighted ? title.indexOf(highlighted) : -1;
+function getDeviceType() {
+  return window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop';
+}
 
-  if (index === -1) {
-    appendTextWithBreaks(element, title);
+function sectionNameFromElement(element) {
+  if (element.id) return element.id;
+  if (element.classList.contains('metrics-section')) return 'impact';
+  return 'section';
+}
+
+function trackEvent(type, detail = {}) {
+  const payload = {
+    type,
+    path: window.location.pathname || '/',
+    title: document.title,
+    source: getTrafficSource(),
+    referrer: document.referrer,
+    device: getDeviceType(),
+    visitorId: getVisitorId(),
+    sessionId: getSessionId(),
+    ...detail
+  };
+  const body = JSON.stringify(payload);
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' }));
     return;
   }
 
-  appendTextWithBreaks(element, title.slice(0, index));
-  const span = document.createElement('span');
-  appendTextWithBreaks(span, highlighted);
-  element.append(span);
-  appendTextWithBreaks(element, title.slice(index + highlighted.length));
+  fetch('/api/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body,
+    keepalive: true
+  }).catch(() => {});
 }
 
-function iconSvg(icon) {
-  const icons = {
-    clock:
-      '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v6l4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-    chart:
-      '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M5 19V9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M12 19V5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M19 19v-8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
-    shield:
-      '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v10" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
-    grow:
-      '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M7 17L17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v8h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
-  };
+trackEvent('page_view');
 
-  return icons[icon] || icons.grow;
+if ('IntersectionObserver' in window) {
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.target.dataset.sectionTracked) return;
+        entry.target.dataset.sectionTracked = 'true';
+        trackEvent('section_view', { section: sectionNameFromElement(entry.target) });
+      });
+    },
+    { rootMargin: '0px 0px -34% 0px', threshold: 0.22 }
+  );
+
+  document.querySelectorAll('main section[id], .metrics-section').forEach((section) => sectionObserver.observe(section));
 }
 
-function detailIconSvg(icon) {
-  const icons = {
-    calculator:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h.01M8 15h2M12 15h2M16 15h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-    helmet:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 14h18v4H3zM9 6v8M15 6v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
-    folder:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7l2 2h9v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
-    refresh:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M18 12a6 6 0 0 0-10-4M6 12a6 6 0 0 0 10 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-    mail:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
-    chart:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
-    puzzle:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v4h4v6h-4v4H9v-4H5V7h4V3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
-    file:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l3 3v15H7zM14 3v4h4M9 12h6M9 16h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
-    bell:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16h12l-1.2-2V10a4.8 4.8 0 0 0-9.6 0v4L6 16zM10 19h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-    clipboard:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5H6v16h12V5h-2M9 3h6v4H9zM9 13l2 2 4-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
-    archive:
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v14H4zM3 3h18v4H3zM9 12h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
-  };
+const scrollDepths = [25, 50, 75, 100];
+const trackedScrollDepths = new Set();
 
-  return icons[icon] || icons.file;
-}
-
-function detailVisualMarkup(detail, type) {
-  const src = type === 'proof' ? detail.proofImage : detail.heroImage;
-  if (!src) return '';
-  return `<img src="${escapeHtml(src)}" alt="" loading="eager" decoding="async">`;
-}
-
-function sectorDetailKey(sector) {
-  return String(sector.label || '').toLowerCase().includes('btp') ? 'btp' : 'accounting';
-}
-
-function renderNav(content) {
-  nav.innerHTML = '';
-  (content.nav || defaultContent.nav).forEach((item) => {
-    const link = document.createElement('a');
-    link.href = navTargets[item.trim().toLowerCase()] || '#audit';
-    link.textContent = item;
-    nav.append(link);
+function updateScrollDepth() {
+  const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const depth = Math.round((window.scrollY / scrollable) * 100);
+  scrollDepths.forEach((target) => {
+    if (depth < target || trackedScrollDepths.has(target)) return;
+    trackedScrollDepths.add(target);
+    trackEvent('scroll_depth', { value: target });
   });
 }
 
-function renderClientMarquee(clients) {
-  const safeClients = clients.length ? clients : defaultContent.trust.clients;
-  const visibleItems = safeClients.map((client) => renderClientItem(client)).join('');
-  const duplicateItems = safeClients.map((client) => renderClientItem(client, true)).join('');
-  document.querySelector('#client-grid').innerHTML = `${visibleItems}${duplicateItems}`;
-}
+let scrollTrackingTicking = false;
+window.addEventListener(
+  'scroll',
+  () => {
+    if (scrollTrackingTicking) return;
+    scrollTrackingTicking = true;
+    window.requestAnimationFrame(() => {
+      updateScrollDepth();
+      scrollTrackingTicking = false;
+    });
+  },
+  { passive: true }
+);
 
-function normalizeClient(client) {
-  if (typeof client === 'string') return { name: client, logo: '' };
-  return {
-    name: String(client?.name || ''),
-    logo: String(client?.logo || '')
-  };
-}
+window.addEventListener('pagehide', () => {
+  trackEvent('time_on_page', { value: Math.round(performance.now() / 1000) });
+});
 
-function renderClientItem(client, hidden = false) {
-  const item = normalizeClient(client);
-  const ariaHidden = hidden ? ' aria-hidden="true"' : '';
-  if (item.logo) {
-    return `
-      <span class="client-logo"${ariaHidden}>
-        <img src="${escapeHtml(item.logo)}" alt="${hidden ? '' : escapeHtml(item.name)}" loading="lazy" decoding="async">
-      </span>
-    `;
+window.addEventListener('error', (event) => {
+  trackEvent('js_error', { message: event.message });
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+  trackEvent('js_error', { message: event.reason?.message || 'Promise rejetée' });
+});
+
+window.addEventListener('load', () => {
+  const navigation = performance.getEntriesByType('navigation')[0];
+  let lcp = 0;
+  let cls = 0;
+
+  if ('PerformanceObserver' in window) {
+    try {
+      const lcpObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries.at(-1);
+        if (lastEntry) lcp = Math.round(lastEntry.startTime);
+      });
+      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+
+      const clsObserver = new PerformanceObserver((entryList) => {
+        entryList.getEntries().forEach((entry) => {
+          if (!entry.hadRecentInput) cls += entry.value;
+        });
+      });
+      clsObserver.observe({ type: 'layout-shift', buffered: true });
+    } catch {
+      // Browsers that do not expose these observers still send load timing.
+    }
   }
 
-  return `<span${ariaHidden}>${escapeHtml(item.name)}</span>`;
-}
+  window.setTimeout(() => {
+    trackEvent('performance', {
+      loadMs: navigation ? Math.round(navigation.loadEventEnd || navigation.duration) : Math.round(performance.now()),
+      lcp,
+      cls: Math.round(cls * 1000) / 1000
+    });
+  }, 1200);
+});
 
-function renderContent(content) {
-  const data = { ...defaultContent, ...content };
-  const hero = { ...defaultContent.hero, ...data.hero };
-  const trust = { ...defaultContent.trust, ...data.trust };
-  const sectors = { ...defaultContent.sectors, ...data.sectors };
-  const cta = { ...defaultContent.cta, ...data.cta };
-  const legal = { ...defaultContent.legal, ...data.legal };
-
-  renderNav(data);
-  renderHighlighted(document.querySelector('#hero-title'), hero.title, hero.highlight);
-  document.querySelector('#hero-intro').textContent = hero.intro;
-  document.querySelector('#hero-primary').textContent = hero.primaryCta;
-  document.querySelector('#hero-secondary').textContent = hero.secondaryCta;
-
-  document.querySelector('#trust-title').textContent = trust.label;
-  renderClientMarquee(trust.clients || []);
-
-  document.querySelector('#benefit-grid').innerHTML = (data.benefits || [])
-    .map(
-      (benefit) => `
-        <article class="benefit-card">
-          <div class="benefit-icon">${iconSvg(benefit.icon)}</div>
-          <h3>${escapeHtml(benefit.title)}</h3>
-          <p>${escapeHtml(benefit.text)}</p>
-        </article>
-      `
-    )
-    .join('');
-
-  document.querySelector('#sector-eyebrow').textContent = sectors.eyebrow;
-  renderHighlighted(document.querySelector('#sector-title'), sectors.title, 'expertise commune');
-  document.querySelector('#sector-intro').textContent = sectors.intro;
-  document.querySelector('#sector-grid').innerHTML = (sectors.items || [])
-    .map((sector) => {
-      const image = String(sector.image || '').trim();
-      const imageClass = image ? ' has-image' : '';
-      const imageStyle = image ? ` style="--sector-image: url('${escapeHtml(escapeCssString(image))}')"` : '';
-
-      return `
-        <article class="sector-card${imageClass}"${imageStyle}>
-          <p class="sector-label">${escapeHtml(sector.label)}</p>
-          <h3>${escapeHtml(normalizeLineBreaks(sector.title))}</h3>
-          <p>${escapeHtml(sector.text)}</p>
-          <button class="sector-more" type="button" data-sector-detail="${sectorDetailKey(sector)}">En savoir plus <span aria-hidden="true">→</span></button>
-        </article>
-      `;
-    })
-    .join('');
-
-  document.querySelector('#cta-eyebrow').textContent = cta.eyebrow;
-  renderHighlighted(document.querySelector('#audit-title'), cta.title, 'gains de performance');
-  document.querySelector('#cta-points').innerHTML = (cta.points || [])
-    .map((point) => `<li>${escapeHtml(point)}</li>`)
-    .join('');
-  document.querySelector('#cta-button').textContent = cta.button;
-
-  document.querySelector('#footer-copyright').textContent = legal.copyright;
-  document.querySelector('#legal-link-label').textContent = legal.legalLabel;
-  document.querySelector('#privacy-link-label').textContent = legal.privacyLabel;
-  document.querySelector('#legal-modal-title').textContent = legal.legalTitle;
-  document.querySelector('#legal-modal-text').textContent = legal.legalText;
-  document.querySelector('#privacy-modal-title').textContent = legal.privacyTitle;
-  document.querySelector('#privacy-modal-text').textContent = legal.privacyText;
-  document.querySelector('#cookie-text').textContent = legal.cookiesText;
-  document.querySelector('#cookie-button-label').textContent = legal.cookiesButton;
-
-  if (localStorage.getItem('bewiseCookieConsent') !== 'accepted') {
-    cookieBanner.hidden = false;
-  }
-}
-
-async function loadContent() {
-  try {
-    const response = await fetch('/api/content');
-    if (!response.ok) throw new Error('Content unavailable');
-    renderContent(await response.json());
-  } catch {
-    renderContent(defaultContent);
-  }
-}
+window.addEventListener('message', (event) => {
+  if (!String(event.origin).includes('calendly.com')) return;
+  if (event.data?.event !== 'calendly.event_scheduled') return;
+  trackEvent('audit_reserved', { cta: 'Calendly' });
+});
 
 function setStatus(message, type) {
+  if (!formStatus) return;
   formStatus.textContent = message;
   formStatus.classList.remove('is-success', 'is-error');
   if (type) formStatus.classList.add(`is-${type}`);
 }
 
-menuButton.addEventListener('click', () => {
+function closeMenu() {
+  nav?.classList.remove('is-open');
+  menuButton?.setAttribute('aria-expanded', 'false');
+  menuButton?.setAttribute('aria-label', 'Ouvrir le menu');
+}
+
+menuButton?.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('is-open');
   menuButton.setAttribute('aria-expanded', String(isOpen));
   menuButton.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
 });
 
-nav.addEventListener('click', (event) => {
-  if (event.target.closest('a')) {
-    nav.classList.remove('is-open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', 'Ouvrir le menu');
-  }
+nav?.addEventListener('click', (event) => {
+  if (event.target.closest('a')) closeMenu();
 });
+
+function cleanPath(pathname) {
+  return pathname.replace(/\/+$/, '') || '/';
+}
+
+function routeTarget(pathname) {
+  return sectionRoutes[cleanPath(pathname)];
+}
+
+function scrollToRoute(pathname, behavior = 'smooth') {
+  const selector = routeTarget(pathname);
+  const target = selector ? document.querySelector(selector) : null;
+  if (!target) return false;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : behavior, block: 'start' });
+  return true;
+}
+
+function navigateToRoute(pathname, replace = false) {
+  const nextPath = cleanPath(pathname);
+  if (!routeTarget(nextPath)) return false;
+
+  closeMenu();
+  if (cleanPath(window.location.pathname) !== nextPath || window.location.search || window.location.hash) {
+    window.history[replace ? 'replaceState' : 'pushState'](null, '', nextPath);
+  }
+  scrollToRoute(nextPath);
+  return true;
+}
+
+// Keep clean section URLs while preserving in-page navigation and history.
+document.querySelectorAll('a[href^="#"], a[href^="/"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const href = link.getAttribute('href');
+    const routePath = href.startsWith('#') ? anchorRoutes[href] : routeTarget(new URL(href, window.location.origin).pathname) && href;
+    if (!routePath) return;
+
+    event.preventDefault();
+    navigateToRoute(routePath);
+  });
+});
+
+const initialRoute = window.location.hash && anchorRoutes[window.location.hash] ? anchorRoutes[window.location.hash] : cleanPath(window.location.pathname);
+if (routeTarget(initialRoute)) {
+  window.history.replaceState(null, '', initialRoute);
+  if (initialRoute !== '/') window.requestAnimationFrame(() => scrollToRoute(initialRoute, 'auto'));
+}
+
+window.addEventListener('popstate', () => {
+  scrollToRoute(cleanPath(window.location.pathname), 'auto');
+});
+
+if (metricsSection) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    metricsSection.classList.add('is-visible');
+  } else {
+    const metricsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          metricsSection.classList.add('is-visible');
+          metricsObserver.unobserve(metricsSection);
+        });
+      },
+      {
+        rootMargin: '0px 0px -16% 0px',
+        threshold: 0.24
+      }
+    );
+
+    metricsObserver.observe(metricsSection);
+  }
+}
 
 function openModal(name) {
   const modal = document.querySelector(`[data-modal="${name}"]`);
   if (!modal) return;
   lastFocusedElement = document.activeElement;
   modal.hidden = false;
+  document.body.classList.add('is-modal-open');
   modal.querySelector('[data-close-modal]')?.focus();
 }
 
 function closeModal(modal) {
   if (!modal) return;
   modal.hidden = true;
+  if (!document.querySelector('[data-modal]:not([hidden])')) {
+    document.body.classList.remove('is-modal-open');
+  }
   lastFocusedElement?.focus?.();
 }
 
-function openSectorDetail(key) {
-  const detail = sectorDetailContent[key];
-  if (!detail) return;
-  const modal = document.querySelector('[data-modal="sector-detail"]');
-  const card = document.querySelector('#sector-detail-card');
-  card.dataset.theme = detail.theme;
-  document.querySelector('#sector-detail-icon').innerHTML = detailIconSvg(detail.icon);
-  document.querySelector('#sector-detail-label').textContent = detail.label;
-  document.querySelector('#sector-detail-title').innerHTML = `
-    <span class="sector-detail-title-main">${escapeHtml(detail.title)}</span>
-    <span class="sector-detail-title-highlight">${escapeHtml(detail.highlight)}</span>
-  `;
-  const intro = document.querySelector('#sector-detail-intro');
-  intro.textContent = detail.intro || '';
-  intro.hidden = !detail.intro;
-  document.querySelector('#sector-detail-automation-title').textContent = detail.automationTitle;
-  document.querySelector('#sector-detail-features').innerHTML = detail.features
-    .map(
-      ([icon, label]) => `
-        <article class="detail-feature">
-          <div class="detail-feature-icon">${detailIconSvg(icon)}</div>
-          <p>${escapeHtml(label)}</p>
-        </article>
-      `
-    )
-    .join('');
-  const proofTitle = document.querySelector('#sector-detail-proof-title');
-  proofTitle.textContent = detail.proofTitle || '';
-  proofTitle.hidden = !detail.proofTitle;
-  document.querySelector('#sector-detail-proof-list').innerHTML = detail.proof
-    .map((item) => `<li>${escapeHtml(item)}</li>`)
-    .join('');
-  document.querySelector('#sector-detail-visual').innerHTML = detailVisualMarkup(detail, 'hero');
-  document.querySelector('#sector-detail-proof-visual').innerHTML = detailVisualMarkup(detail, 'proof');
-  lastFocusedElement = document.activeElement;
-  modal.hidden = false;
-  modal.querySelector('[data-close-modal]')?.focus();
-}
-
+// Calendly stays in a modal so audit booking does not send visitors away.
 modalButtons.forEach((button) => {
-  button.addEventListener('click', () => openModal(button.dataset.openModal));
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    closeMenu();
+    if (button.dataset.openModal === 'audit') {
+      const section = button.closest('section') ? sectionNameFromElement(button.closest('section')) : 'header';
+      trackEvent('audit_click', {
+        section,
+        cta: button.textContent.replace(/\s+/g, ' ').trim()
+      });
+    }
+    openModal(button.dataset.openModal);
+  });
 });
 
 closeModalButtons.forEach((button) => {
@@ -445,38 +348,37 @@ document.querySelectorAll('[data-modal]').forEach((modal) => {
   });
 });
 
-document.addEventListener('click', (event) => {
-  const sectorCta = event.target.closest('.sector-detail-cta');
-  if (sectorCta) {
-    closeModal(document.querySelector('[data-modal="sector-detail"]'));
-    return;
-  }
-
-  const sectorButton = event.target.closest('[data-sector-detail]');
-  if (!sectorButton) return;
-  openSectorDetail(sectorButton.dataset.sectorDetail);
-});
-
 document.addEventListener('keydown', (event) => {
   const key = event.key.toLowerCase();
   if (key === 'escape') {
+    closeMenu();
     document.querySelectorAll('[data-modal]:not([hidden])').forEach(closeModal);
   }
+
   if ((event.ctrlKey || event.metaKey) && event.altKey && key === 'b') {
     event.preventDefault();
     window.location.href = '/admin';
   }
 });
 
-cookieAcceptButton.addEventListener('click', () => {
+if (cookieBanner && localStorage.getItem('bewiseCookieConsent') !== 'accepted') {
+  cookieBanner.hidden = false;
+}
+
+cookieAcceptButton?.addEventListener('click', () => {
   localStorage.setItem('bewiseCookieConsent', 'accepted');
   cookieBanner.hidden = true;
 });
 
-form.addEventListener('submit', async (event) => {
+form?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const submitButton = form.querySelector('button[type="submit"]');
   const payload = Object.fromEntries(new FormData(form).entries());
+  payload.source = getTrafficSource();
+  payload.path = window.location.pathname || '/nouscontacter';
+  payload.origin = 'Formulaire contact';
+  payload.visitorId = getVisitorId();
+  payload.sessionId = getSessionId();
 
   submitButton.disabled = true;
   setStatus('Envoi en cours...', null);
@@ -491,7 +393,7 @@ form.addEventListener('submit', async (event) => {
     if (!response.ok) throw new Error(result.error || 'Impossible d’envoyer la demande');
 
     form.reset();
-    setStatus('Merci, votre demande a bien été envoyée.', 'success');
+    setStatus('Merci, votre message a bien été envoyé.', 'success');
   } catch (error) {
     setStatus(error.message, 'error');
   } finally {
@@ -499,4 +401,224 @@ form.addEventListener('submit', async (event) => {
   }
 });
 
-loadContent();
+if (methodTimeline && methodSteps.length) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  methodSteps.forEach((step, index) => {
+    step.style.setProperty('--method-step-index', index);
+  });
+
+  if (prefersReducedMotion) {
+    methodTimeline.style.setProperty('--method-progress', '1');
+    methodSteps.forEach((step) => step.classList.add('is-visible'));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      },
+      {
+        rootMargin: '0px 0px -18% 0px',
+        threshold: 0.24
+      }
+    );
+
+    methodSteps.forEach((step) => revealObserver.observe(step));
+
+    let timelineTicking = false;
+
+    function updateMethodProgress() {
+      const rect = methodTimeline.getBoundingClientRect();
+      const viewportAnchor = window.innerHeight * 0.62;
+      const progress = (viewportAnchor - rect.top) / rect.height;
+      const clampedProgress = Math.min(1, Math.max(0, progress));
+      methodTimeline.style.setProperty('--method-progress', clampedProgress.toFixed(3));
+    }
+
+    function requestMethodProgressUpdate() {
+      if (timelineTicking) return;
+      timelineTicking = true;
+      window.requestAnimationFrame(() => {
+        updateMethodProgress();
+        timelineTicking = false;
+      });
+    }
+
+    updateMethodProgress();
+    window.addEventListener('scroll', requestMethodProgressUpdate, { passive: true });
+    window.addEventListener('resize', requestMethodProgressUpdate);
+  }
+}
+
+const ecosystemIconMarkup = {
+  users:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M17 21a5 5 0 0 0-10 0"></path><circle cx="12" cy="8" r="4"></circle><path d="M19 8v4"></path><path d="M21 10h-4"></path></svg>',
+  message:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M4 5h16v11H8l-4 4Z"></path><path d="M8 9h8"></path><path d="M8 13h5"></path></svg>',
+  document:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h5"></path></svg>',
+  folder:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M3 7h7l2 2h9v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"></path><path d="M3 7V6a2 2 0 0 1 2-2h5l2 3"></path></svg>',
+  chart:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M4 20V10"></path><path d="M10 20V4"></path><path d="M16 20v-7"></path><path d="M22 20V8"></path><path d="M2 20h22"></path></svg>',
+  inbox:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M4 4h16l2 10v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5Z"></path><path d="M7 14h3a2 2 0 0 0 4 0h3"></path></svg>',
+  calendar:
+    '<svg viewBox="0 0 24 24" focusable="false"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4"></path><path d="M16 3v4"></path><path d="M4 10h16"></path><path d="M8 14h3"></path></svg>',
+  build:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M14 6 8 12l4 4 6-6"></path><path d="M4 20 8 16"></path><path d="M15 5l4-2 2 2-2 4"></path></svg>',
+  bag:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M6 8h12l-1 13H7Z"></path><path d="M9 8a3 3 0 0 1 6 0"></path></svg>',
+  truck:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M3 6h11v10H3Z"></path><path d="M14 10h4l3 3v3h-7Z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>',
+  headset:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M4 14v-3a8 8 0 0 1 16 0v3"></path><path d="M18 19c0 1.1-.9 2-2 2h-2"></path><rect x="2" y="12" width="4" height="7" rx="2"></rect><rect x="18" y="12" width="4" height="7" rx="2"></rect></svg>',
+  heart:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M20.8 6.6a5.1 5.1 0 0 0-7.2 0L12 8.2l-1.6-1.6a5.1 5.1 0 1 0-7.2 7.2L12 22l8.8-8.2a5.1 5.1 0 0 0 0-7.2Z"></path></svg>',
+  refresh:
+    '<svg viewBox="0 0 24 24" focusable="false"><path d="M20 7v5h-5"></path><path d="M4 17v-5h5"></path><path d="M18 12a6 6 0 0 0-10-4"></path><path d="M6 12a6 6 0 0 0 10 4"></path></svg>'
+};
+
+const ecosystemData = {
+  services: {
+    nodes: [
+      { title: 'Prospection', icon: 'users', items: ['Qualification des demandes', 'Préparation des rendez-vous', 'Enrichissement du CRM'] },
+      { title: 'Relation client', icon: 'message', items: ['Comptes rendus', 'E-mails & relances', 'Suivi des échanges'] },
+      { title: 'Production', icon: 'document', items: ['Documents & livrables', 'Contrôle qualité', 'Validation interne'] },
+      { title: 'Administration', icon: 'folder', items: ['Facturation', 'Signatures', 'Classement documentaire'] },
+      { title: 'Pilotage', icon: 'chart', items: ['Rentabilité', 'Charge des équipes', 'Tableaux de bord'] }
+    ]
+  },
+  industrie: {
+    nodes: [
+      { title: 'Demandes', icon: 'inbox', items: ['Qualification du besoin', 'Études techniques', 'Préparation des devis'] },
+      { title: 'Planification', icon: 'calendar', items: ['Planning des équipes', 'Affectation des ressources', 'Coordination des fournisseurs'] },
+      { title: 'Exécution', icon: 'build', items: ['Suivi de chantier', 'Production', 'Contrôle qualité'] },
+      { title: 'Gestion', icon: 'folder', items: ['Documents réglementaires', 'Comptes rendus', 'Facturation'] },
+      { title: 'Pilotage', icon: 'chart', items: ['Avancement', 'Marges', 'Délais', 'Indicateurs de terrain'] }
+    ]
+  },
+  commerce: {
+    nodes: [
+      { title: 'Acquisition', icon: 'users', items: ['Qualification des prospects', 'Réponses commerciales', 'Prise de commande'] },
+      { title: 'Commandes', icon: 'bag', items: ['Validation', 'Paiement', 'Préparation'] },
+      { title: 'Logistique', icon: 'truck', items: ['Stocks', 'Expédition', 'Suivi des livraisons'] },
+      { title: 'Relation client', icon: 'headset', items: ['SAV', 'Retours', 'Fidélisation'] },
+      { title: 'Performance', icon: 'chart', items: ['Ventes', 'Prévisions', 'Marges', 'Produits gagnants'] }
+    ]
+  },
+  sante: {
+    nodes: [
+      { title: 'Accueil', icon: 'calendar', items: ['Prise de rendez-vous', 'Qualification des demandes', 'Orientation'] },
+      { title: 'Accompagnement', icon: 'heart', items: ['Dossiers', 'Comptes rendus', 'Coordination'] },
+      { title: 'Suivi', icon: 'refresh', items: ['Relances', 'Planification', 'Communication'] },
+      { title: 'Administration', icon: 'document', items: ['Documents', 'Facturation', 'Conformité'] },
+      { title: 'Pilotage', icon: 'chart', items: ['Occupation', 'Satisfaction', 'Indicateurs', 'Qualité de service'] }
+    ]
+  }
+};
+
+function animateEcosystemFrieze() {
+  if (!ecosystemSection?.classList.contains('is-in-view')) return;
+
+  ecosystemFlow?.classList.remove('is-switching');
+  ecosystemNodes.forEach((node) => node.classList.remove('is-switching'));
+  void ecosystemFlow?.offsetWidth;
+  ecosystemFlow?.classList.add('is-switching');
+  ecosystemNodes.forEach((node) => node.classList.add('is-switching'));
+}
+
+function setEcosystem(tabName, shouldAnimate = true) {
+  const nextData = ecosystemData[tabName] || ecosystemData.services;
+  ecosystemTabs.forEach((tab) => {
+    const isActive = tab.dataset.ecosystemTab === tabName;
+    tab.classList.toggle('is-active', isActive);
+    tab.setAttribute('aria-selected', String(isActive));
+    tab.setAttribute('tabindex', isActive ? '0' : '-1');
+    if (isActive && ecosystemStage && tab.id) ecosystemStage.setAttribute('aria-labelledby', tab.id);
+  });
+
+  ecosystemNodes.forEach((node, index) => {
+    const item = nextData.nodes[index] || nextData.nodes[0];
+    node.style.setProperty('--ecosystem-index', index);
+    const icon = node.querySelector('.ecosystem-icon');
+    if (icon) icon.innerHTML = ecosystemIconMarkup[item.icon] || ecosystemIconMarkup.document;
+    node.querySelector('h3').textContent = item.title;
+    const list = node.querySelector('ul');
+    if (list) {
+      list.replaceChildren(
+        ...item.items.map((text) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = text;
+          return listItem;
+        })
+      );
+    }
+  });
+
+  if (shouldAnimate) animateEcosystemFrieze();
+}
+
+if (ecosystemTabs.length && ecosystemNodes.length) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  ecosystemNodes.forEach((node, index) => {
+    node.style.setProperty('--ecosystem-index', index);
+  });
+
+  ecosystemTabs.forEach((tab) => {
+    tab.addEventListener('click', () => setEcosystem(tab.dataset.ecosystemTab));
+    tab.addEventListener('keydown', (event) => {
+      const key = event.key;
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(key)) return;
+      event.preventDefault();
+
+      const currentIndex = ecosystemTabs.indexOf(tab);
+      const nextIndex =
+        key === 'Home'
+          ? 0
+          : key === 'End'
+            ? ecosystemTabs.length - 1
+            : key === 'ArrowRight'
+              ? (currentIndex + 1) % ecosystemTabs.length
+              : (currentIndex - 1 + ecosystemTabs.length) % ecosystemTabs.length;
+      const nextTab = ecosystemTabs[nextIndex];
+      nextTab.focus();
+      setEcosystem(nextTab.dataset.ecosystemTab);
+    });
+  });
+
+  const activeTab = ecosystemTabs.find((tab) => tab.classList.contains('is-active')) || ecosystemTabs[0];
+  setEcosystem(activeTab.dataset.ecosystemTab, false);
+
+  if (ecosystemSection) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      ecosystemSection.classList.add('is-in-view');
+    } else {
+      let ecosystemSectionInView = false;
+      const ecosystemObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !ecosystemSectionInView) {
+              ecosystemSectionInView = true;
+              ecosystemSection.classList.add('is-in-view');
+              animateEcosystemFrieze();
+            } else if (!entry.isIntersecting) {
+              ecosystemSectionInView = false;
+              ecosystemSection.classList.remove('is-in-view');
+              ecosystemFlow?.classList.remove('is-switching');
+              ecosystemNodes.forEach((node) => node.classList.remove('is-switching'));
+            }
+          });
+        },
+        {
+          rootMargin: '0px 0px -18% 0px',
+          threshold: 0.16
+        }
+      );
+
+      ecosystemObserver.observe(ecosystemSection);
+    }
+  }
+}

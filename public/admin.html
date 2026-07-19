@@ -3,227 +3,351 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
     <title>Admin Bewise</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=11">
-    <link rel="icon" href="/favicon.ico?v=11" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="/bewise-favicon-32.png?v=11">
-    <link rel="icon" type="image/png" sizes="16x16" href="/bewise-favicon-16.png?v=11">
-    <link rel="shortcut icon" href="/favicon.ico?v=11">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=11">
-    <link rel="mask-icon" href="/assets/bewise-mark.png" color="#4323ff">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=14">
+    <link rel="icon" href="/favicon.ico?v=14" sizes="32x32">
+    <link rel="icon" type="image/png" sizes="32x32" href="/bewise-favicon-32.png?v=14">
+    <link rel="icon" type="image/png" sizes="16x16" href="/bewise-favicon-16.png?v=14">
+    <link rel="shortcut icon" type="image/png" href="/bewise-favicon-32.png?v=14">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=14">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@700&family=Inter:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=37">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css?v=190">
   </head>
   <body class="admin-body">
     <main class="admin-shell">
       <section class="admin-login" id="login-panel">
-        <a class="brand admin-brand" href="/" aria-label="Retour au site Bewise">
-          <img src="/assets/bewise-logo.png" alt="Bewise" width="165" height="52">
+        <a class="admin-login-brand" href="/admin" aria-label="Recharger l’administration Bewise">
+          <img src="/assets/brand/logo-bewise-main.png" alt="Bewise" width="900" height="275">
         </a>
-        <div class="admin-login-heading">
-          <p class="eyebrow">Espace sécurisé</p>
+        <div class="admin-login-card">
+          <p class="admin-kicker">Espace sécurisé</p>
           <h1>Administration</h1>
-          <p>Accès rapide depuis le site : <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd>.</p>
+          <p>Connectez-vous pour piloter le site, les conversions et les contenus Bewise.</p>
+          <form class="admin-form" id="login-form">
+            <label>
+              <span>Utilisateur</span>
+              <input id="admin-user" name="user" autocomplete="username" required>
+            </label>
+            <label>
+              <span>Mot de passe</span>
+              <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <button class="admin-primary-button" type="submit">
+              <span>Se connecter</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
+          </form>
         </div>
-        <form class="admin-form" id="login-form">
-          <div class="field">
-            <label for="admin-user">Utilisateur</label>
-            <input id="admin-user" name="user" autocomplete="username" required>
-          </div>
-          <div class="field">
-            <label for="admin-password">Mot de passe</label>
-            <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
-          </div>
-          <button class="button form-button" type="submit">
-            <span>Se connecter</span>
-            <span aria-hidden="true">→</span>
-          </button>
-          <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
-        </form>
       </section>
 
       <section class="admin-dashboard" id="dashboard" hidden>
-        <header class="admin-topbar">
-          <a class="brand" href="/" aria-label="Retour au site Bewise">
-            <img src="/assets/bewise-logo.png" alt="Bewise" width="148" height="47">
+        <aside class="admin-sidebar" aria-label="Navigation administration">
+          <a class="admin-logo" href="/admin" aria-label="Recharger l’administration Bewise">
+            <img src="/assets/brand/logo-bewise-main.png" alt="Bewise" width="900" height="275">
           </a>
-          <div class="admin-actions">
-            <span class="admin-secure-badge">Session protégée</span>
-            <button class="ghost-button" id="logout-button" type="button">Déconnexion</button>
-          </div>
-        </header>
-
-        <div class="admin-tabs" role="tablist" aria-label="Admin">
-          <button class="tab-button is-active" type="button" data-tab="leads">Demandes</button>
-          <button class="tab-button" type="button" data-tab="content">Contenu</button>
-        </div>
-
-        <section class="admin-panel is-active" id="panel-leads" aria-labelledby="leads-title">
-          <div class="admin-heading">
-            <div>
-              <p class="eyebrow">Demandes d’audit</p>
-              <h1 id="leads-title">Contacts entrants</h1>
-            </div>
-            <button class="ghost-button" id="refresh-leads" type="button">Actualiser</button>
-          </div>
-          <div class="lead-list" id="lead-list"></div>
-        </section>
-
-        <section class="admin-panel" id="panel-content" aria-labelledby="content-title">
-          <div class="admin-heading">
-            <div>
-              <p class="eyebrow">Site public</p>
-              <h1 id="content-title">Contenu éditable</h1>
-            </div>
-          </div>
-          <div class="admin-edit-lock" id="edit-lock-panel">
-            <div>
-              <p class="admin-lock-title">Édition verrouillée</p>
-              <p>Consultez librement le contenu. Déverrouillez uniquement quand vous voulez modifier le site.</p>
-            </div>
-            <button class="ghost-button" id="toggle-edit" type="button">Déverrouiller l’édition</button>
-          </div>
-          <form class="content-form" id="content-form">
-            <fieldset>
-              <legend>Navigation</legend>
-              <div class="field field-full">
-                <label for="nav-items">Liens du menu, un par ligne</label>
-                <textarea id="nav-items" name="navItems" rows="4"></textarea>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Hero</legend>
-              <div class="field field-full">
-                <label for="hero-title-field">Titre</label>
-                <textarea id="hero-title-field" name="heroTitle" rows="3" required></textarea>
-              </div>
-              <div class="field">
-                <label for="hero-highlight-field">Texte en couleur</label>
-                <input id="hero-highlight-field" name="heroHighlight">
-              </div>
-              <div class="field field-full">
-                <label for="hero-intro-field">Introduction</label>
-                <textarea id="hero-intro-field" name="heroIntro" rows="3" required></textarea>
-              </div>
-              <div class="field">
-                <label for="hero-primary-field">Bouton principal</label>
-                <input id="hero-primary-field" name="heroPrimary">
-              </div>
-              <div class="field">
-                <label for="hero-secondary-field">Lien secondaire</label>
-                <input id="hero-secondary-field" name="heroSecondary">
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Confiance</legend>
-              <div class="field">
-                <label for="trust-label-field">Libellé</label>
-                <input id="trust-label-field" name="trustLabel">
-              </div>
-              <div class="field field-full">
-                <label for="clients-field">Clients, un par ligne: Nom | chemin du logo</label>
-                <textarea id="clients-field" name="clients" rows="5"></textarea>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Bénéfices</legend>
-              <div class="editable-list" id="benefits-editor"></div>
-              <button class="ghost-button" type="button" id="add-benefit">Ajouter un bénéfice</button>
-            </fieldset>
-
-            <fieldset>
-              <legend>Secteurs</legend>
-              <div class="field">
-                <label for="sectors-eyebrow-field">Eyebrow</label>
-                <input id="sectors-eyebrow-field" name="sectorsEyebrow">
-              </div>
-              <div class="field">
-                <label for="sectors-title-field">Titre</label>
-                <input id="sectors-title-field" name="sectorsTitle">
-              </div>
-              <div class="field field-full">
-                <label for="sectors-intro-field">Introduction</label>
-                <textarea id="sectors-intro-field" name="sectorsIntro" rows="2"></textarea>
-              </div>
-              <div class="editable-list" id="sectors-editor"></div>
-              <button class="ghost-button" type="button" id="add-sector">Ajouter un secteur</button>
-            </fieldset>
-
-            <fieldset>
-              <legend>Appel à l’action</legend>
-              <div class="field">
-                <label for="cta-eyebrow-field">Eyebrow</label>
-                <input id="cta-eyebrow-field" name="ctaEyebrow">
-              </div>
-              <div class="field">
-                <label for="cta-title-field">Titre</label>
-                <input id="cta-title-field" name="ctaTitle">
-              </div>
-              <div class="field field-full">
-                <label for="cta-points-field">Points, un par ligne</label>
-                <textarea id="cta-points-field" name="ctaPoints" rows="4"></textarea>
-              </div>
-              <div class="field">
-                <label for="cta-button-field">Bouton</label>
-                <input id="cta-button-field" name="ctaButton">
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Légal & cookies</legend>
-              <div class="field field-full">
-                <label for="legal-copyright-field">Copyright footer</label>
-                <input id="legal-copyright-field" name="legalCopyright">
-              </div>
-              <div class="field">
-                <label for="legal-label-field">Libellé mentions</label>
-                <input id="legal-label-field" name="legalLabel">
-              </div>
-              <div class="field">
-                <label for="privacy-label-field">Libellé confidentialité</label>
-                <input id="privacy-label-field" name="privacyLabel">
-              </div>
-              <div class="field">
-                <label for="legal-title-field">Titre mentions</label>
-                <input id="legal-title-field" name="legalTitle">
-              </div>
-              <div class="field">
-                <label for="privacy-title-field">Titre confidentialité</label>
-                <input id="privacy-title-field" name="privacyTitle">
-              </div>
-              <div class="field field-full">
-                <label for="legal-text-field">Texte mentions légales</label>
-                <textarea id="legal-text-field" name="legalText" rows="6"></textarea>
-              </div>
-              <div class="field field-full">
-                <label for="privacy-text-field">Texte confidentialité</label>
-                <textarea id="privacy-text-field" name="privacyText" rows="6"></textarea>
-              </div>
-              <div class="field field-full">
-                <label for="cookies-text-field">Texte cookies</label>
-                <textarea id="cookies-text-field" name="cookiesText" rows="3"></textarea>
-              </div>
-              <div class="field">
-                <label for="cookies-button-field">Bouton cookies</label>
-                <input id="cookies-button-field" name="cookiesButton">
-              </div>
-            </fieldset>
-
-            <button class="button form-button" type="submit">
-              <span>Enregistrer le contenu</span>
-              <span aria-hidden="true">→</span>
+          <nav class="admin-nav">
+            <button class="is-active" type="button" data-admin-tab="overview">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M4.5 4.5h4.2v4.2H4.5zM11.3 4.5h4.2v4.2h-4.2zM4.5 11.3h4.2v4.2H4.5zM11.3 11.3h4.2v4.2h-4.2z"></path></svg>
+              </span>
+              <span>Vue d’ensemble</span>
             </button>
-            <p class="form-status" id="content-status" role="status" aria-live="polite"></p>
-          </form>
-        </section>
+            <button type="button" data-admin-tab="journey">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M5 5h3.8v3.8H5zM11.2 5h3.8v3.8h-3.8zM8.1 11.2h3.8V15H8.1zM8.8 6.9h2.4M10 8.8v2.4"></path></svg>
+              </span>
+              <span>Parcours</span>
+            </button>
+            <button type="button" data-admin-tab="acquisition">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M4 15.5h12M5.5 15.5v-5M10 15.5v-8M14.5 15.5v-6"></path></svg>
+              </span>
+              <span>Acquisition</span>
+            </button>
+            <button type="button" data-admin-tab="conversions">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M6.5 4v2.3M13.5 4v2.3M4.5 8h11M6 5.5h8a1.5 1.5 0 0 1 1.5 1.5v7.5A1.5 1.5 0 0 1 14 16H6a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 6 5.5z"></path></svg>
+              </span>
+              <span>Audits</span>
+            </button>
+            <button type="button" data-admin-tab="seo">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M4 11.2c3.7-4.3 8.2-4.3 12 0M6.2 8.9c2.5-2 5.1-2 7.6 0M11.7 12.1l3.2 3.2M14.9 12.1v3.2h-3.2"></path></svg>
+              </span>
+              <span>SEO</span>
+            </button>
+            <button type="button" data-admin-tab="performance">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M4.7 14.4C5.2 10.8 7.3 8.8 10 8.8s4.8 2 5.3 5.6M10 14.4l3.1-3.4"></path></svg>
+              </span>
+              <span>Performance</span>
+            </button>
+            <button type="button" data-admin-tab="insights">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M5 15.5V9M10 15.5V5M15 15.5V8"></path></svg>
+              </span>
+              <span>Insights</span>
+            </button>
+            <button type="button" data-admin-tab="content">
+              <span class="admin-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20"><path d="M5.5 4.5h9v11h-9zM7.8 8h4.4M7.8 11h3.5"></path></svg>
+              </span>
+              <span>Contenu</span>
+            </button>
+          </nav>
+          <div class="admin-sidebar-foot">
+            <a class="admin-site-link" href="/" target="_blank" rel="noopener noreferrer">
+              <span>Voir le site</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <div class="admin-user-card">
+              <span class="admin-user-avatar" aria-hidden="true">B</span>
+              <div>
+                <strong>Bewise</strong>
+                <span>Administrateur</span>
+              </div>
+              <button class="admin-user-logout" id="logout-button" type="button" aria-label="Déconnexion">⌄</button>
+            </div>
+            <details class="admin-danger-zone">
+              <summary>Maintenance</summary>
+              <form class="admin-reset-form" id="admin-reset-form">
+                <label>
+                  <span>Mot de passe</span>
+                  <input id="admin-reset-password" type="password" autocomplete="current-password" required>
+                </label>
+                <button class="admin-danger-button" type="submit">Réinitialiser les données</button>
+                <p class="admin-maintenance-status" id="admin-maintenance-status" role="status" aria-live="polite"></p>
+              </form>
+            </details>
+          </div>
+        </aside>
+
+        <div class="admin-main">
+          <header class="admin-topbar">
+            <div>
+              <h1 id="admin-page-title">Vue d’ensemble</h1>
+              <p id="admin-page-subtitle">Suivez les performances clés de votre site.</p>
+            </div>
+            <div class="admin-topbar-actions">
+              <span class="admin-shortcut">⌘ + Shift + B pour fermer</span>
+              <span class="admin-date-range" id="admin-date-range">7 derniers jours</span>
+              <button class="admin-primary-button admin-small-button" id="refresh-dashboard" type="button">
+                <span>Actualiser</span>
+                <span aria-hidden="true">↻</span>
+              </button>
+            </div>
+          </header>
+
+          <section class="admin-panel is-active" id="panel-overview" data-panel-title="Vue d’ensemble">
+            <div class="admin-kpi-grid" id="overview-grid"></div>
+            <div class="admin-overview-grid">
+              <article class="admin-card admin-funnel-card">
+                <div class="admin-card-heading">
+                  <h3>Tunnel de conversion</h3>
+                  <span id="admin-updated-at">Mise à jour en direct</span>
+                </div>
+                <div class="admin-mini-funnel" id="overview-funnel"></div>
+              </article>
+              <article class="admin-card admin-sources-card">
+                <div class="admin-card-heading">
+                  <h3>Sources de trafic</h3>
+                  <span>7 derniers jours</span>
+                </div>
+                <div class="admin-traffic-sources" id="traffic-sources"></div>
+              </article>
+              <article class="admin-card admin-audits-card">
+                <div class="admin-card-heading">
+                  <h3>Audits réservés</h3>
+                  <button class="admin-card-link" type="button" data-admin-jump="conversions">Voir tout</button>
+                </div>
+                <div class="admin-compact-list" id="overview-audits"></div>
+              </article>
+              <article class="admin-card admin-seo-card">
+                <div class="admin-card-heading">
+                  <h3>SEO - Aperçu</h3>
+                  <span>7 derniers jours</span>
+                </div>
+                <div class="admin-seo-preview" id="overview-seo"></div>
+              </article>
+              <article class="admin-card admin-performance-card">
+                <div class="admin-card-heading">
+                  <h3>Performance du site</h3>
+                  <span>7 derniers jours</span>
+                </div>
+                <div class="admin-performance-preview" id="overview-performance"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-journey" data-panel-title="Parcours des visiteurs">
+            <div class="admin-section-heading">
+              <div>
+                <p class="admin-kicker">Parcours des visiteurs</p>
+                <h2>Comprendre où les visiteurs avancent, cliquent ou quittent.</h2>
+              </div>
+            </div>
+            <div class="admin-card">
+              <div class="visitor-journey" id="journey-flow"></div>
+            </div>
+            <div class="admin-two-columns">
+              <article class="admin-card">
+                <div class="admin-card-heading">
+                  <h3>Sections atteintes</h3>
+                  <span>Pourcentage des visiteurs</span>
+                </div>
+                <div class="admin-bars" id="sections-reach"></div>
+              </article>
+              <article class="admin-card">
+                <div class="admin-card-heading">
+                  <h3>Mobile vs ordinateur</h3>
+                  <span>Clics & conversions</span>
+                </div>
+                <div class="admin-table-wrap">
+                  <table class="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Support</th>
+                        <th>Visiteurs</th>
+                        <th>Clics audit</th>
+                        <th>Conversion</th>
+                      </tr>
+                    </thead>
+                    <tbody id="device-table"></tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-acquisition" data-panel-title="Acquisition">
+            <div class="admin-section-heading">
+              <div>
+                <p class="admin-kicker">Acquisition</p>
+                <h2>Identifier les sources qui amènent les meilleurs prospects.</h2>
+              </div>
+            </div>
+            <div class="admin-card">
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Source</th>
+                      <th>Visiteurs</th>
+                      <th>Temps passé</th>
+                      <th>Clics audit</th>
+                      <th>Réservations</th>
+                      <th>Conversion</th>
+                    </tr>
+                  </thead>
+                  <tbody id="acquisition-table"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-conversions" data-panel-title="Audits & contacts">
+            <div class="admin-section-heading">
+              <div>
+                <p class="admin-kicker">Audits et contacts</p>
+                <h2>Suivre toutes les conversions entrantes.</h2>
+              </div>
+              <button class="admin-ghost-button" id="refresh-leads" type="button">Actualiser les contacts</button>
+            </div>
+            <div class="admin-card">
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Nom</th>
+                      <th>Entreprise</th>
+                      <th>E-mail</th>
+                      <th>Source</th>
+                      <th>Bouton / page</th>
+                      <th>Statut</th>
+                    </tr>
+                  </thead>
+                  <tbody id="conversion-table"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-seo" data-panel-title="SEO">
+            <div class="admin-section-heading">
+              <div>
+                <p class="admin-kicker">SEO</p>
+                <h2>Mesurer la visibilité réelle depuis Google.</h2>
+              </div>
+            </div>
+            <div class="admin-seo-grid" id="seo-grid"></div>
+            <article class="admin-card admin-connect-card">
+              <div>
+                <h3>Google Search Console</h3>
+                <p>À connecter pour suivre clics, impressions, position moyenne, requêtes, pages visibles et erreurs d’indexation.</p>
+              </div>
+              <span>Connexion requise</span>
+            </article>
+          </section>
+
+          <section class="admin-panel" id="panel-performance" data-panel-title="Performance technique">
+            <div class="admin-section-heading">
+              <div>
+                <p class="admin-kicker">Performance technique</p>
+                <h2>Une lecture claire, seulement quand une action est utile.</h2>
+              </div>
+            </div>
+            <div class="admin-kpi-grid admin-performance-grid" id="performance-grid"></div>
+            <div class="admin-card">
+              <div class="admin-card-heading">
+                <h3>Alertes</h3>
+                <span>Core Web Vitals, erreurs et disponibilité</span>
+              </div>
+              <div class="admin-alerts" id="performance-alerts"></div>
+            </div>
+          </section>
+
+          <section class="admin-panel" id="panel-insights" data-panel-title="Insights automatiques">
+            <div class="admin-section-heading">
+              <div>
+                <p class="admin-kicker">Insights automatiques</p>
+                <h2>Une synthèse courte pour décider vite.</h2>
+              </div>
+            </div>
+            <div class="admin-insight-list" id="insight-list"></div>
+          </section>
+
+          <section class="admin-panel" id="panel-content" data-panel-title="Contenu du site">
+            <div class="admin-section-heading">
+              <div>
+                <p class="admin-kicker">Contenu</p>
+                <h2>Modifier les textes clés sans se perdre.</h2>
+              </div>
+            </div>
+            <div class="admin-edit-lock" id="edit-lock-panel">
+              <div>
+                <strong>Édition verrouillée</strong>
+                <span>Déverrouillez uniquement lorsque vous êtes prêt à modifier le contenu.</span>
+              </div>
+              <button class="admin-ghost-button" id="toggle-edit" type="button">Déverrouiller l’édition</button>
+            </div>
+            <form class="admin-content-form" id="content-form">
+              <div class="content-editor-grid" id="content-editor"></div>
+              <button class="admin-primary-button" type="submit">
+                <span>Enregistrer le contenu</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <p class="form-status" id="content-status" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
       </section>
     </main>
 
-    <script src="/admin.js?v=12" type="module"></script>
+    <script src="/admin.js?v=24" type="module"></script>
   </body>
 </html>

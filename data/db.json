@@ -2,18 +2,34 @@
   "content": {
     "siteName": "Bewise",
     "nav": [
+      "Agents IA",
       "Méthode",
-      "Secteurs"
+      "FAQ"
     ],
     "hero": {
-      "title": "Nous concevons des entreprises\nplus performantes\ngrâce à l’IA.",
-      "highlight": "plus performantes",
-      "intro": "Bewise aide les PME à éliminer les tâches à faible valeur ajoutée pour libérer du temps, sécuriser les processus et accélérer la croissance.",
-      "primaryCta": "Audit offert",
-      "secondaryCta": "Découvrir notre approche"
+      "kicker": "Système IA opérationnel pour équipes ambitieuses",
+      "title": "Transformez vos processus répétitifs en agents IA sur mesure.",
+      "highlight": "agents IA sur mesure",
+      "intro": "Nous analysons votre organisation, repérons les tâches qui coûtent du temps, puis développons des agents IA connectés à vos outils pour accélérer vos équipes et rendre vos opérations plus prévisibles.",
+      "primaryCta": "Réserver mon diagnostic (20 min)",
+      "secondaryCta": "Découvrir notre méthode",
+      "proofs": [
+        {
+          "value": "20 min",
+          "label": "diagnostic offert"
+        },
+        {
+          "value": "2-6 sem.",
+          "label": "premier agent en production"
+        },
+        {
+          "value": "sur mesure",
+          "label": "connecté à vos outils"
+        }
+      ]
     },
     "trust": {
-      "label": "Ils nous ont fait confiance",
+      "label": "Des entreprises qui nous font confiance",
       "clients": [
         {
           "name": "TotalEnergies",
@@ -43,55 +59,177 @@
     },
     "benefits": [
       {
-        "icon": "clock",
-        "title": "Plus de temps",
-        "text": "Nous automatisons les tâches répétitives pour que vos équipes se concentrent sur l’essentiel."
+        "icon": "x",
+        "title": "Vos équipes perdent du temps sur des tâches répétitives.",
+        "text": ""
       },
       {
-        "icon": "chart",
-        "title": "Plus de performance",
-        "text": "Des processus plus fluides, moins d’erreurs, des délais réduits, des résultats concrets."
+        "icon": "x",
+        "title": "Les demandes clients ou internes restent sans réponse rapide.",
+        "text": ""
       },
       {
-        "icon": "shield",
-        "title": "Plus de fiabilité",
-        "text": "Des solutions sécurisées, conformes et robustes, conçues pour durer."
+        "icon": "x",
+        "title": "Les relances, suivis et validations passent entre les mailles.",
+        "text": ""
       },
       {
-        "icon": "grow",
-        "title": "Prêt à grandir",
-        "text": "Des solutions évolutives qui s’adaptent à votre croissance et à vos enjeux."
+        "icon": "x",
+        "title": "Les informations sont dispersées entre CRM, mails, tableurs et outils métier.",
+        "text": ""
       }
     ],
-    "sectors": {
-      "eyebrow": "Experts des PME",
-      "title": "Deux univers. Une expertise commune.",
-      "intro": "Nous comprenons vos métiers. Nous concevons des solutions qui créent de la valeur.",
-      "items": [
+    "method": {
+      "eyebrow": "Notre méthode",
+      "title": "Notre méthode en 3 étapes",
+      "steps": [
         {
-          "label": "Cabinets comptables",
-          "title": "Automatisez. Sécurisez.\\nConcentrez-vous sur le conseil.",
-          "text": "Nous aidons les cabinets à automatiser la production, sécuriser les données et améliorer l’expérience client.",
-          "image": "/assets/sectors/comptable.jpg"
+          "title": "Cartographie",
+          "text": "Nous analysons vos processus, vos outils et les points où vos équipes perdent le plus de temps."
         },
         {
-          "label": "Entreprise du BTP",
-          "title": "Des chantiers mieux pilotés.\\nDes entreprises plus rentables.",
-          "text": "Nous optimisons vos processus de gestion, de suivi et de reporting pour des opérations plus efficaces.",
-          "image": "/assets/sectors/btp.jpg"
+          "title": "Prototype",
+          "text": "Nous construisons un premier agent IA sur mesure, relié à vos données et testé sur un cas d’usage concret."
+        },
+        {
+          "title": "Déploiement",
+          "text": "Nous formons vos équipes, suivons les gains et améliorons les agents au fil de vos usages réels."
         }
       ]
     },
-    "cta": {
-      "eyebrow": "Un premier pas simple et rapide",
-      "title": "Et si on trouvait ensemble vos gains de performance ?",
+    "agents": {
+      "eyebrow": "Notre suite d’agents IA",
+      "title": "Des agents spécialisés pour accélérer chaque fonction clé.",
+      "highlight": "chaque fonction clé",
+      "intro": "Chaque agent s’intègre à vos outils et s’adapte à vos processus métiers. Ensemble, ils réduisent les tâches manuelles, fluidifient les échanges et rendent vos opérations plus mesurables.",
+      "items": [
+        {
+          "icon": "message",
+          "label": "Relation client",
+          "title": "Agent Support & Réponse",
+          "text": "Répondez vite, même quand vos équipes sont occupées.",
+          "points": [
+            "Répond instantanément aux demandes",
+            "Collecte les informations essentielles",
+            "Oriente vers la bonne équipe",
+            "Crée un suivi clair dans vos outils"
+          ]
+        },
+        {
+          "icon": "user",
+          "label": "Priorisation",
+          "title": "Agent Qualification",
+          "text": "Priorisez les demandes qui méritent vraiment votre attention.",
+          "points": [
+            "Pose les bonnes questions",
+            "Enrichit les fiches clients ou projets",
+            "Identifie l’urgence et le potentiel",
+            "Score et priorise automatiquement"
+          ]
+        },
+        {
+          "icon": "search",
+          "label": "Knowledge work",
+          "title": "Agent Recherche & Synthèse",
+          "text": "Trouvez l’information utile sans fouiller partout.",
+          "points": [
+            "Scanne documents, bases et outils internes",
+            "Compare les informations clés",
+            "Produit des synthèses actionnables",
+            "Alerte sur les nouveautés importantes"
+          ]
+        },
+        {
+          "icon": "star",
+          "label": "Décision",
+          "title": "Agent Recommandation",
+          "text": "Proposez la meilleure action suivante à chaque étape.",
+          "points": [
+            "Matching intelligent besoin / solution",
+            "Classement par pertinence",
+            "Présentation claire et personnalisée",
+            "Moins d’allers-retours inutiles"
+          ]
+        },
+        {
+          "icon": "calendar",
+          "label": "Coordination",
+          "title": "Agent Planning & Coordination",
+          "text": "Planifiez plus vite, sans allers-retours.",
+          "points": [
+            "Vérifie les agendas en temps réel",
+            "Propose automatiquement des créneaux",
+            "Évite les doublons et oublis",
+            "Confirme les prochaines étapes"
+          ]
+        },
+        {
+          "icon": "bell",
+          "label": "Pilotage",
+          "title": "Agent Suivi & Reporting",
+          "text": "Gardez une vision claire de ce qui avance et de ce qui bloque.",
+          "points": [
+            "Relances automatiques et personnalisées",
+            "Suivi des tâches et validations",
+            "Tableaux de bord simples",
+            "Mesure des gains obtenus"
+          ]
+        }
+      ]
+    },
+    "why": {
+      "eyebrow": "Pourquoi Bewise",
+      "title": "Pourquoi les entreprises choisissent Bewise",
       "points": [
-        "Analyse de vos processus clés",
-        "Identification des opportunités",
-        "Estimation des gains post intégrations",
-        "Recommandations concrètes"
+        "Développement sur mesure",
+        "Compatible avec vos outils existants",
+        "Déploiement rapide",
+        "Formation incluse",
+        "Impact mesurable"
+      ]
+    },
+    "faq": {
+      "eyebrow": "Questions fréquentes",
+      "title": "Questions fréquentes",
+      "items": [
+        {
+          "question": "Nous avons déjà des outils métier.",
+          "answer": "Parfait. Nos agents viennent les compléter, pas les remplacer."
+        },
+        {
+          "question": "Combien de temps dure un projet ?",
+          "answer": "2 à 6 semaines selon les besoins."
+        },
+        {
+          "question": "Est-ce adapté à une PME ?",
+          "answer": "Oui. Nous dimensionnons les agents selon votre volume d’activité, votre équipe et vos priorités."
+        },
+        {
+          "question": "Faut-il une équipe technique en interne ?",
+          "answer": "Non. Nous cadrons, développons et accompagnons le déploiement avec vos équipes métiers."
+        },
+        {
+          "question": "Les agents sont-ils personnalisés ?",
+          "answer": "Toujours. Chaque agent est construit autour de vos processus, de vos outils et de votre façon de travailler."
+        }
+      ]
+    },
+    "sectors": {
+      "eyebrow": "",
+      "title": "",
+      "intro": "",
+      "items": []
+    },
+    "cta": {
+      "eyebrow": "Diagnostic offert",
+      "title": "Réservez votre diagnostic IA de 20 minutes",
+      "points": [
+        "analysons vos processus",
+        "identifions le principal point de perte",
+        "estimons les gains possibles",
+        "vous montrons où l’IA peut réellement créer de la valeur"
       ],
-      "button": "Demander mon audit offert"
+      "button": "Réserver mon diagnostic (20 min)"
     },
     "legal": {
       "copyright": "© 2024 Bewise. Tous droits réservés.",
@@ -99,11 +237,225 @@
       "privacyLabel": "Confidentialité",
       "legalTitle": "Mentions légales",
       "privacyTitle": "Confidentialité",
-      "legalText": "Bewise accompagne les PME dans l’automatisation de leurs processus et l’intégration de solutions d’intelligence artificielle.\n\nÉditeur du site : Bewise\nContact : contact@bewise.fr\nResponsable de publication : Direction Bewise\n\nLes contenus présents sur ce site sont fournis à titre informatif et peuvent être mis à jour à tout moment.",
-      "privacyText": "Les informations transmises via le formulaire d’audit sont utilisées uniquement pour répondre à votre demande et vous recontacter.\n\nBewise ne revend pas vos données personnelles. Vous pouvez demander l’accès, la modification ou la suppression de vos informations en nous contactant à contact@bewise.fr.",
+      "legalText": "Bewise accompagne les entreprises dans l’automatisation de leurs processus et l’intégration d’agents d’intelligence artificielle sur mesure.\n\nÉditeur du site : ML H&C\nContact : contact@gobewise.com\nResponsable de publication : Direction Bewise\n\nLes contenus présents sur ce site sont fournis à titre informatif et peuvent être mis à jour à tout moment.",
+      "privacyText": "Les informations transmises via le formulaire de diagnostic sont utilisées uniquement pour répondre à votre demande et vous recontacter.\n\nBewise ne revend pas vos données personnelles. Vous pouvez demander l’accès, la modification ou la suppression de vos informations en nous contactant à contact@gobewise.com.",
       "cookiesText": "Nous utilisons uniquement des cookies nécessaires au bon fonctionnement du site et à la mémorisation de votre choix.",
       "cookiesButton": "Accepter"
     }
   },
-  "leads": []
+  "leads": [],
+  "analytics": {
+    "events": [
+      {
+        "id": "60ada75d-8a3e-41d7-8e0a-7ca23b7e7eb0",
+        "createdAt": "2026-07-19T16:59:11.860Z",
+        "type": "time_on_page",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": 10401,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "3e715287-d2e6-4a81-a644-b4f4a2ff13de",
+        "createdAt": "2026-07-19T16:59:12.155Z",
+        "type": "page_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "d828c626-053f-409a-8b55-d1887dcf4a33",
+        "createdAt": "2026-07-19T16:59:12.328Z",
+        "type": "section_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": "expertise",
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "dbaf329d-dcc7-4c8d-88aa-217ac16c1800",
+        "createdAt": "2026-07-19T16:59:14.211Z",
+        "type": "scroll_depth",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": 25,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "7717c5e0-9679-4150-9114-4503cf9d624f",
+        "createdAt": "2026-07-19T16:59:14.238Z",
+        "type": "scroll_depth",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": 50,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "aec19e07-20bb-4d0a-8a23-e63ba8e113f2",
+        "createdAt": "2026-07-19T16:59:14.391Z",
+        "type": "section_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": "contact",
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "2e489eb5-49d3-4086-a905-19596851c2b5",
+        "createdAt": "2026-07-19T16:59:15.860Z",
+        "type": "performance",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": null,
+        "loadMs": 2844,
+        "lcp": 0,
+        "cls": 0,
+        "message": null
+      },
+      {
+        "id": "36dd8440-d230-4dcb-b47e-1e9be04772f8",
+        "createdAt": "2026-07-19T16:59:20.464Z",
+        "type": "page_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "869f8f2d-e450-4674-bd41-8e5d541e038a",
+        "createdAt": "2026-07-19T16:59:20.483Z",
+        "type": "section_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": "expertise",
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "a94d5a11-4082-4118-b1e9-2e0884f3868d",
+        "createdAt": "2026-07-19T16:59:20.715Z",
+        "type": "time_on_page",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": 9,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "e0ffc696-33d5-498a-9eb5-26a5f6023b34",
+        "createdAt": "2026-07-19T16:59:22.681Z",
+        "type": "performance",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4174/",
+        "device": "desktop",
+        "visitorId": "90631b44-f6b9-4c1f-89b6-9a59bcf11f18",
+        "sessionId": "fdf514a5-1eb1-4bb0-8697-116e7530093c",
+        "value": null,
+        "loadMs": 1143,
+        "lcp": 0,
+        "cls": 0,
+        "message": null
+      }
+    ],
+    "resetAt": "2026-07-19T14:06:56.069Z"
+  }
 }
