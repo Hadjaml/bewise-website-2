@@ -389,13 +389,14 @@ form?.addEventListener('submit', async (event) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    const result = await response.json();
+    const rawResult = await response.text();
+    const result = rawResult ? JSON.parse(rawResult) : {};
     if (!response.ok) throw new Error(result.error || 'Impossible d’envoyer la demande');
 
     form.reset();
     setStatus('Merci, votre message a bien été envoyé.', 'success');
   } catch (error) {
-    setStatus(error.message, 'error');
+    setStatus(error instanceof SyntaxError ? 'Réponse serveur invalide. Réessayez dans quelques instants.' : error.message, 'error');
   } finally {
     submitButton.disabled = false;
   }

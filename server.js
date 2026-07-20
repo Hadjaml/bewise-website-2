@@ -1,6 +1,6 @@
 import { createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 import { createReadStream } from 'node:fs';
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,6 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.join(__dirname, 'public');
 const dataDir = path.join(__dirname, 'data');
 const dbPath = path.join(dataDir, 'db.json');
+let dbWriteQueue = Promise.resolve();
 
 const port = Number(process.env.PORT || 4173);
 const adminUser = process.env.ADMIN_USER || 'admin';
@@ -128,14 +129,79 @@ async function readJsonBody(request) {
   }
 }
 
+function recoverFirstJsonObject(raw) {
+  let depth = 0;
+  let started = false;
+  let inString = false;
+  let escaped = false;
+
+  for (let index = 0; index < raw.length; index += 1) {
+    const char = raw[index];
+
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (char === '\\') {
+        escaped = true;
+        continue;
+      }
+      if (char === '"' && !escaped) inString = false;
+      continue;
+    }
+
+    if (char === '"') {
+      inString = true;
+      continue;
+    }
+
+    if (char === '{') {
+      started = true;
+      depth += 1;
+      continue;
+    }
+
+    if (char === '}') {
+      depth -= 1;
+      if (started && depth === 0) {
+        try {
+          return JSON.parse(raw.slice(0, index + 1));
+        } catch {
+          return null;
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
 async function readDb() {
   await mkdir(dataDir, { recursive: true });
   const raw = await readFile(dbPath, 'utf8');
-  return JSON.parse(raw);
+
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    const recovered = recoverFirstJsonObject(raw);
+    if (recovered && typeof recovered === 'object' && !Array.isArray(recovered)) {
+      await writeDb(recovered);
+      return recovered;
+    }
+    throw error;
+  }
+}
+
+async function writeDbFile(db) {
+  const tempPath = path.join(dataDir, `db.${process.pid}.${Date.now()}.${randomUUID()}.tmp`);
+  await writeFile(tempPath, `${JSON.stringify(db, null, 2)}\n`);
+  await rename(tempPath, dbPath);
 }
 
 async function writeDb(db) {
-  await writeFile(dbPath, `${JSON.stringify(db, null, 2)}\n`);
+  dbWriteQueue = dbWriteQueue.then(() => writeDbFile(db), () => writeDbFile(db));
+  return dbWriteQueue;
 }
 
 function sendJson(response, statusCode, data) {
