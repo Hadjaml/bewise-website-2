@@ -433,6 +433,8 @@ function computeAnalytics(db) {
       name: lead.name,
       company: lead.company,
       email: lead.email,
+      phone: lead.phone || '',
+      message: lead.message || '',
       source: lead.source || 'Non renseigné',
       origin: lead.origin || 'Formulaire contact',
       status: lead.status || 'new'

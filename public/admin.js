@@ -452,6 +452,8 @@ function renderConversions() {
     ? analytics.conversions
         .map((item) => {
           const isContact = item.type === 'Contact';
+          const message = item.message || 'Aucun message renseigné.';
+          const phone = item.phone || 'Téléphone non renseigné';
           return `
             <tr data-lead-id="${isContact ? escapeHtml(item.id) : ''}">
               <td>${escapeHtml(formatDate(item.date))}</td>
@@ -468,6 +470,23 @@ function renderConversions() {
                 }
               </td>
             </tr>
+            ${
+              isContact
+                ? `
+                  <tr class="admin-message-row">
+                    <td colspan="7">
+                      <div class="admin-message-card">
+                        <div>
+                          <span>Message</span>
+                          <p>${escapeHtml(message)}</p>
+                        </div>
+                        <a href="tel:${escapeHtml(item.phone || '')}" class="${item.phone ? '' : 'is-disabled'}">${escapeHtml(phone)}</a>
+                      </div>
+                    </td>
+                  </tr>
+                `
+                : ''
+            }
           `;
         })
         .join('')
