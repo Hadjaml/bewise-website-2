@@ -32,28 +32,36 @@
       "label": "Des entreprises qui nous font confiance",
       "clients": [
         {
-          "name": "TotalEnergies",
-          "logo": "/assets/clients/totalenergies.png"
+          "name": "ECAI",
+          "logo": "/assets/clients/ecai.svg"
         },
         {
-          "name": "LogicSystem",
-          "logo": "/assets/clients/logicsystem.png"
+          "name": "Kolecto",
+          "logo": "/assets/clients/kolecto.svg"
         },
         {
-          "name": "Sopra Steria",
-          "logo": "/assets/clients/sopra-steria.png"
+          "name": "ProGBat",
+          "logo": "/assets/clients/progbat.png"
         },
         {
-          "name": "BNP Paribas",
-          "logo": "/assets/clients/bnp-paribas.png"
+          "name": "HOLA Immobilier",
+          "logo": "/assets/clients/hola-immobilier.png"
         },
         {
           "name": "MeaL",
           "logo": "/assets/clients/meal.png"
         },
         {
-          "name": "SN Barat",
-          "logo": "/assets/clients/sn-barat.png"
+          "name": "iad",
+          "logo": "/assets/clients/iad.png"
+        },
+        {
+          "name": "Nestenn",
+          "logo": "/assets/clients/nestenn.png"
+        },
+        {
+          "name": "CityZen",
+          "logo": "/assets/clients/cityzen.png"
         }
       ]
     },
@@ -452,6 +460,120 @@
         "value": null,
         "loadMs": 1143,
         "lcp": 0,
+        "cls": 0,
+        "message": null
+      },
+      {
+        "id": "cb20b4d7-7515-480c-8eb3-9095cf659c0f",
+        "createdAt": "2026-07-19T18:00:35.873Z",
+        "type": "page_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4175/",
+        "device": "mobile",
+        "visitorId": "294dbdee-e934-4607-a217-278c23df8f22",
+        "sessionId": "30edf021-440c-4f15-8575-e38911874937",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "eacfe9ca-c35b-4fc3-8585-8fffabb52746",
+        "createdAt": "2026-07-19T18:00:36.250Z",
+        "type": "section_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": "expertise",
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4175/",
+        "device": "mobile",
+        "visitorId": "294dbdee-e934-4607-a217-278c23df8f22",
+        "sessionId": "30edf021-440c-4f15-8575-e38911874937",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "81485ad8-e8cb-491e-b1c8-8b3d7a7ceaf0",
+        "createdAt": "2026-07-19T18:00:38.812Z",
+        "type": "performance",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4175/",
+        "device": "mobile",
+        "visitorId": "294dbdee-e934-4607-a217-278c23df8f22",
+        "sessionId": "30edf021-440c-4f15-8575-e38911874937",
+        "value": null,
+        "loadMs": 4210,
+        "lcp": 2964,
+        "cls": 0,
+        "message": null
+      },
+      {
+        "id": "7ac361bb-3f31-40e4-ae26-c82ebee3dc80",
+        "createdAt": "2026-07-19T18:00:46.093Z",
+        "type": "page_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4175/",
+        "device": "mobile",
+        "visitorId": "294dbdee-e934-4607-a217-278c23df8f22",
+        "sessionId": "8e18c165-d1ef-4425-9f3f-bcd634aee747",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "2f4cb5c5-9c00-43bc-846f-b68ffb27e965",
+        "createdAt": "2026-07-19T18:00:46.198Z",
+        "type": "section_view",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": "expertise",
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4175/",
+        "device": "mobile",
+        "visitorId": "294dbdee-e934-4607-a217-278c23df8f22",
+        "sessionId": "8e18c165-d1ef-4425-9f3f-bcd634aee747",
+        "value": null,
+        "loadMs": null,
+        "lcp": null,
+        "cls": null,
+        "message": null
+      },
+      {
+        "id": "be8b8912-eb90-4ec6-84cb-5164d6200eb7",
+        "createdAt": "2026-07-19T18:00:48.175Z",
+        "type": "performance",
+        "path": "/",
+        "title": "Bewise | Écosystèmes d’agents IA sur mesure pour PME",
+        "section": null,
+        "cta": null,
+        "source": "Accès direct",
+        "referrer": "http://localhost:4175/",
+        "device": "mobile",
+        "visitorId": "294dbdee-e934-4607-a217-278c23df8f22",
+        "sessionId": "8e18c165-d1ef-4425-9f3f-bcd634aee747",
+        "value": null,
+        "loadMs": 1035,
+        "lcp": 324,
         "cls": 0,
         "message": null
       }
