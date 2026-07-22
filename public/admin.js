@@ -493,7 +493,7 @@ function renderConversions() {
           const rawMessage = String(item.message || '').trim();
           const hasMessage = Boolean(rawMessage);
           const message = rawMessage || 'Aucun message renseigné.';
-          const messagePreview = hasMessage && rawMessage.length > 92 ? `${rawMessage.slice(0, 92).trim()}…` : rawMessage;
+          const messagePreview = hasMessage && rawMessage.length > 74 ? `${rawMessage.slice(0, 74).trim()}…` : rawMessage;
           const phone = item.phone || 'Téléphone non renseigné';
           return `
             <tr data-lead-id="${isContact ? escapeHtml(item.id) : ''}">
@@ -506,7 +506,16 @@ function renderConversions() {
               <td>
                 ${
                   hasMessage
-                    ? `<span class="admin-message-preview">${escapeHtml(messagePreview)}</span>`
+                    ? `
+                      <details class="admin-message-details">
+                        <summary>
+                          <span>${escapeHtml(messagePreview)}</span>
+                          <em>Lire</em>
+                        </summary>
+                        <p>${escapeHtml(message)}</p>
+                        <a href="tel:${escapeHtml(item.phone || '')}" class="${item.phone ? '' : 'is-disabled'}">${escapeHtml(phone)}</a>
+                      </details>
+                    `
                     : '<span class="admin-muted-cell">—</span>'
                 }
               </td>
@@ -518,23 +527,6 @@ function renderConversions() {
                 }
               </td>
             </tr>
-            ${
-              hasMessage
-                ? `
-                  <tr class="admin-message-row">
-                    <td colspan="8">
-                      <div class="admin-message-card">
-                        <div>
-                          <span>Message complet</span>
-                          <p>${escapeHtml(message)}</p>
-                        </div>
-                        <a href="tel:${escapeHtml(item.phone || '')}" class="${item.phone ? '' : 'is-disabled'}">${escapeHtml(phone)}</a>
-                      </div>
-                    </td>
-                  </tr>
-                `
-                : ''
-            }
           `;
         })
         .join('')
