@@ -249,6 +249,15 @@
       "privacyText": "Les informations transmises via le formulaire de diagnostic sont utilisées uniquement pour répondre à votre demande et vous recontacter.\n\nBewise ne revend pas vos données personnelles. Vous pouvez demander l’accès, la modification ou la suppression de vos informations en nous contactant à contact@gobewise.com.",
       "cookiesText": "Nous utilisons uniquement des cookies nécessaires au bon fonctionnement du site et à la mémorisation de votre choix.",
       "cookiesButton": "Accepter"
+    },
+    "headings": {
+      "heroTitle": "Votre entreprise,\nÀ l’échelle de\nvos ambitions",
+      "impactTitle": "Donnez à votre entreprise une capacité qu’elle n’avait jamais eue.",
+      "approachTitle": "Une méthode construite autour de votre métier.",
+      "ecosystemTitle": "Votre entreprise,\norchestrée intelligemment.",
+      "aboutTitle": "Nous pensons que les prochaines entreprises qui domineront leur marché ne seront pas les plus grandes.\nElles seront les mieux organisées.",
+      "resultsTitle": "Des gains visibles sur les processus qui comptent.",
+      "contactTitle": "Parlez-nous de votre projet."
     }
   },
   "leads": [],

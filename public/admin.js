@@ -50,8 +50,53 @@ const panelSubtitles = {
   seo: 'Mesurez la visibilité organique dès que Search Console est connectée.',
   performance: 'Gardez un œil sur les signaux techniques importants.',
   insights: 'Lisez une synthèse rapide des points à surveiller.',
-  content: 'Modifiez les contenus validés avec prudence.'
+  content: 'Retrouvez seulement les grands titres à ajuster.'
 };
+
+const contentHeadingFields = [
+  {
+    label: 'Hero',
+    field: 'headings.heroTitle',
+    fallback: 'Votre entreprise,\nÀ l’échelle de\nvos ambitions',
+    note: 'Premier écran'
+  },
+  {
+    label: 'Impact mesurable',
+    field: 'headings.impactTitle',
+    fallback: 'Donnez à votre entreprise une capacité qu’elle n’avait jamais eue.',
+    note: 'Bloc des chiffres'
+  },
+  {
+    label: 'Notre approche',
+    field: 'headings.approachTitle',
+    fallback: 'Une méthode construite autour de votre métier.',
+    note: 'Méthode'
+  },
+  {
+    label: 'Écosystème',
+    field: 'headings.ecosystemTitle',
+    fallback: 'Votre entreprise,\norchestrée intelligemment.',
+    note: 'Organisation'
+  },
+  {
+    label: 'À propos',
+    field: 'headings.aboutTitle',
+    fallback: 'Nous pensons que les prochaines entreprises qui domineront leur marché ne seront pas les plus grandes.\nElles seront les mieux organisées.',
+    note: 'Fondateurs'
+  },
+  {
+    label: 'Réalisations',
+    field: 'headings.resultsTitle',
+    fallback: 'Des gains visibles sur les processus qui comptent.',
+    note: 'Preuves'
+  },
+  {
+    label: 'Contact',
+    field: 'headings.contactTitle',
+    fallback: 'Parlez-nous de votre projet.',
+    note: 'Formulaire'
+  }
+];
 
 let analytics = null;
 let currentContent = null;
@@ -69,13 +114,6 @@ function escapeHtml(value) {
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value || {}));
-}
-
-function lines(value) {
-  return String(value || '')
-    .split('\n')
-    .map((item) => item.trim())
-    .filter(Boolean);
 }
 
 function formatNumber(value) {
@@ -532,78 +570,30 @@ function renderInsights() {
     .join('');
 }
 
-function formatClientLine(client) {
-  if (typeof client === 'string') return client;
-  const name = String(client?.name || '').trim();
-  const logo = String(client?.logo || '').trim();
-  return logo ? `${name} | ${logo}` : name;
+function getByPath(target, path) {
+  return path.split('.').reduce((pointer, part) => pointer?.[part], target);
 }
 
-function parseClientLine(line) {
-  const [name, ...logoParts] = line.split('|');
-  const logo = logoParts.join('|').trim();
-  const cleanName = name.trim();
-  return logo ? { name: cleanName, logo } : cleanName;
-}
-
-function fieldMarkup(label, field, value, rows = 1) {
-  const safeValue = escapeHtml(value || '');
-  const control =
-    rows > 1
-      ? `<textarea data-content-field="${field}" rows="${rows}">${safeValue}</textarea>`
-      : `<input data-content-field="${field}" value="${safeValue}">`;
+function titleFieldMarkup({ label, field, fallback, note }, content) {
+  const value = getByPath(content, field) || fallback;
   return `
-    <label>
-      <span>${escapeHtml(label)}</span>
-      ${control}
-    </label>
-  `;
-}
-
-function contentSectionMarkup(title, intro, fields) {
-  return `
-    <article class="content-editor-card">
-      <div>
-        <h3>${escapeHtml(title)}</h3>
-        <p>${escapeHtml(intro)}</p>
-      </div>
-      <div class="content-editor-fields">
-        ${fields.join('')}
-      </div>
+    <article class="content-title-card">
+      <header>
+        <span>${escapeHtml(note)}</span>
+        <strong>${escapeHtml(label)}</strong>
+      </header>
+      <label>
+        <span>${escapeHtml(label)}</span>
+        <textarea data-content-field="${field}" rows="2">${escapeHtml(value)}</textarea>
+      </label>
     </article>
   `;
 }
 
 function renderContentEditor(content) {
   currentContent = clone(content);
-  contentEditor.innerHTML = [
-    contentSectionMarkup('Navigation', 'Les liens structurants du site.', [
-      fieldMarkup('Liens du menu, un par ligne', 'nav', (content.nav || []).join('\n'), 4)
-    ]),
-    contentSectionMarkup('Hero', 'Le premier message vu par les visiteurs.', [
-      fieldMarkup('Titre', 'hero.title', content.hero?.title || '', 3),
-      fieldMarkup('Texte en couleur', 'hero.highlight', content.hero?.highlight || ''),
-      fieldMarkup('Introduction', 'hero.intro', content.hero?.intro || '', 3),
-      fieldMarkup('Bouton principal', 'hero.primaryCta', content.hero?.primaryCta || ''),
-      fieldMarkup('Lien secondaire', 'hero.secondaryCta', content.hero?.secondaryCta || '')
-    ]),
-    contentSectionMarkup('Confiance', 'Les preuves sociales affichées sur le site.', [
-      fieldMarkup('Libellé', 'trust.label', content.trust?.label || ''),
-      fieldMarkup('Clients, un par ligne : Nom | chemin du logo', 'trust.clients', (content.trust?.clients || []).map(formatClientLine).join('\n'), 5)
-    ]),
-    contentSectionMarkup('CTA', 'Le bloc de conversion principal.', [
-      fieldMarkup('Eyebrow', 'cta.eyebrow', content.cta?.eyebrow || ''),
-      fieldMarkup('Titre', 'cta.title', content.cta?.title || '', 2),
-      fieldMarkup('Points, un par ligne', 'cta.points', (content.cta?.points || []).join('\n'), 4),
-      fieldMarkup('Bouton', 'cta.button', content.cta?.button || '')
-    ]),
-    contentSectionMarkup('Légal & confidentialité', 'Les textes administratifs du site.', [
-      fieldMarkup('Copyright footer', 'legal.copyright', content.legal?.copyright || ''),
-      fieldMarkup('Mentions légales', 'legal.legalText', content.legal?.legalText || '', 6),
-      fieldMarkup('Confidentialité', 'legal.privacyText', content.legal?.privacyText || '', 6),
-      fieldMarkup('Cookies', 'legal.cookiesText', content.legal?.cookiesText || '', 3)
-    ])
-  ].join('');
+  contentEditor.classList.add('is-title-editor');
+  contentEditor.innerHTML = contentHeadingFields.map((field) => titleFieldMarkup(field, content)).join('');
   setContentEditing(false);
 }
 
@@ -622,20 +612,6 @@ function buildContentFromForm() {
   contentForm.querySelectorAll('[data-content-field]').forEach((field) => {
     const key = field.dataset.contentField;
     const value = field.value.trim();
-    if (key === 'nav') {
-      nextContent.nav = lines(value);
-      return;
-    }
-    if (key === 'trust.clients') {
-      nextContent.trust = nextContent.trust || {};
-      nextContent.trust.clients = lines(value).map(parseClientLine);
-      return;
-    }
-    if (key === 'cta.points') {
-      nextContent.cta = nextContent.cta || {};
-      nextContent.cta.points = lines(value);
-      return;
-    }
     setByPath(nextContent, key, value);
   });
 

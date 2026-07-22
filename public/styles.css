@@ -9461,6 +9461,72 @@ body.is-modal-open {
   grid-column: 1 / -1;
 }
 
+.content-editor-grid.is-title-editor {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.content-title-card {
+  display: grid;
+  gap: 16px;
+  min-height: 184px;
+  border: 1px solid rgba(154, 166, 255, 0.1);
+  border-radius: 10px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(37, 180, 255, 0.08), transparent 30%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.046), rgba(255, 255, 255, 0.014)),
+    rgba(12, 15, 24, 0.72);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.content-title-card header {
+  display: grid;
+  gap: 5px;
+}
+
+.content-title-card header span {
+  color: rgba(143, 167, 255, 0.76);
+  font-size: 0.66rem;
+  font-weight: 760;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.content-title-card header strong {
+  color: rgba(248, 250, 255, 0.94);
+  font-size: 0.98rem;
+  font-weight: 590;
+  letter-spacing: 0;
+}
+
+.content-title-card label {
+  gap: 7px;
+}
+
+.content-title-card label > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.content-title-card textarea {
+  min-height: 86px;
+  border-radius: 9px;
+  padding: 13px 14px;
+  color: rgba(250, 251, 255, 0.92);
+  font-size: 0.96rem;
+  font-weight: 480;
+  line-height: 1.45;
+}
+
+.content-title-card textarea:disabled {
+  color: rgba(238, 241, 255, 0.56);
+}
+
 .form-status {
   min-height: 20px;
   margin: 0;
@@ -9484,6 +9550,10 @@ body.is-modal-open {
 
   .admin-two-columns,
   .content-editor-card {
+    grid-template-columns: 1fr;
+  }
+
+  .content-editor-grid.is-title-editor {
     grid-template-columns: 1fr;
   }
 }

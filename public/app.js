@@ -212,6 +212,60 @@ function setStatus(message, type) {
   if (type) formStatus.classList.add(`is-${type}`);
 }
 
+function escapeMarkup(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function titleHtml(value, { accentLastLine = false, accentPhrase = '' } = {}) {
+  const lines = String(value || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  return lines
+    .map((line, index) => {
+      const escaped = escapeMarkup(line);
+      const phrase = escapeMarkup(accentPhrase);
+
+      if (accentLastLine && index === lines.length - 1) return `<span>${escaped}</span>`;
+      if (phrase && escaped.includes(phrase)) return escaped.replace(phrase, `<span>${phrase}</span>`);
+      return escaped;
+    })
+    .join('<br>');
+}
+
+function applyHeading(selector, value, options) {
+  const element = document.querySelector(selector);
+  if (!element || !value) return;
+  element.innerHTML = options ? titleHtml(value, options) : escapeMarkup(value);
+}
+
+async function applyEditableHeadings() {
+  try {
+    const response = await fetch('/api/content', { headers: { Accept: 'application/json' } });
+    if (!response.ok) return;
+    const content = await response.json();
+    const headings = content?.headings || {};
+
+    applyHeading('#hero-title', headings.heroTitle, { accentLastLine: true });
+    applyHeading('#metrics-title', headings.impactTitle);
+    applyHeading('#approach-title', headings.approachTitle, { accentPhrase: 'votre métier.' });
+    applyHeading('#ecosystem-title', headings.ecosystemTitle, { accentPhrase: 'orchestrée' });
+    applyHeading('#about-title', headings.aboutTitle, { accentLastLine: true });
+    applyHeading('#results-title', headings.resultsTitle);
+    applyHeading('#contact-title', headings.contactTitle);
+  } catch {
+    // Static text remains available if the content API is unreachable.
+  }
+}
+
+applyEditableHeadings();
+
 function closeMenu() {
   nav?.classList.remove('is-open');
   menuButton?.setAttribute('aria-expanded', 'false');
