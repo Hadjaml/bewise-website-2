@@ -823,13 +823,12 @@ async function handleApi(request, response, pathname) {
     }
 
     const db = await readDb();
-    db.leads = [];
     db.analytics = {
       events: [],
       resetAt: new Date().toISOString()
     };
     await writeDb(db);
-    return sendJson(response, 200, { ok: true, resetAt: db.analytics.resetAt });
+    return sendJson(response, 200, { ok: true, resetAt: db.analytics.resetAt, prospectsPreserved: true });
   }
 
   if (request.method === 'PATCH' && pathname.startsWith('/api/admin/leads/')) {

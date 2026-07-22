@@ -9357,8 +9357,30 @@ body.is-modal-open {
   white-space: normal;
 }
 
-.admin-message-details p {
-  margin: 12px 0 10px;
+.admin-message-full {
+  max-width: 520px;
+  margin: 14px auto 2px;
+  border: 1px solid rgba(126, 146, 255, 0.12);
+  border-radius: 14px;
+  padding: 13px 14px 14px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(49, 156, 255, 0.1), transparent 34%),
+    rgba(255, 255, 255, 0.032);
+}
+
+.admin-message-full > span {
+  display: block;
+  margin-bottom: 10px;
+  color: rgba(143, 167, 255, 0.92);
+  font-size: 0.66rem;
+  font-weight: 780;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.admin-message-full p {
+  margin: 0 0 10px;
   border-left: 1px solid rgba(143, 167, 255, 0.34);
   padding-left: 12px;
   color: rgba(246, 248, 255, 0.9);
@@ -9367,7 +9389,7 @@ body.is-modal-open {
   white-space: pre-wrap;
 }
 
-.admin-message-details a {
+.admin-message-full a {
   display: inline-flex;
   min-height: 30px;
   align-items: center;
@@ -9379,7 +9401,7 @@ body.is-modal-open {
   font-size: 0.76rem;
 }
 
-.admin-message-details a.is-disabled {
+.admin-message-full a.is-disabled {
   pointer-events: none;
   opacity: 0.58;
 }
@@ -10636,8 +10658,24 @@ body.is-modal-open {
 }
 
 .admin-main {
-  gap: 18px;
-  padding: 36px clamp(24px, 3vw, 42px) 40px;
+  gap: 28px;
+  padding: 48px clamp(24px, 3vw, 42px) 44px;
+}
+
+.admin-topbar {
+  padding-bottom: 8px;
+}
+
+.admin-topbar-actions {
+  padding-top: 6px;
+}
+
+.admin-panel {
+  gap: 24px;
+}
+
+.admin-section-heading {
+  margin-bottom: 4px;
 }
 
 .admin-topbar h1 {
@@ -10738,5 +10776,14 @@ body.is-modal-open {
 @media (max-width: 900px) {
   .admin-dashboard {
     grid-template-columns: 1fr;
+  }
+
+  .admin-main {
+    gap: 22px;
+    padding-top: 30px;
+  }
+
+  .admin-topbar-actions {
+    padding-top: 0;
   }
 }

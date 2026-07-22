@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=193">
+    <link rel="stylesheet" href="/styles.css?v=194">
   </head>
   <body class="admin-body">
     <main class="admin-shell">
@@ -69,7 +69,7 @@
               <span class="admin-nav-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20"><path d="M6.5 4v2.3M13.5 4v2.3M4.5 8h11M6 5.5h8a1.5 1.5 0 0 1 1.5 1.5v7.5A1.5 1.5 0 0 1 14 16H6a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 6 5.5z"></path></svg>
               </span>
-              <span>Audits</span>
+              <span>Prospects</span>
             </button>
             <button type="button" data-admin-tab="seo">
               <span class="admin-nav-icon" aria-hidden="true">
@@ -116,7 +116,7 @@
                   <span>Mot de passe</span>
                   <input id="admin-reset-password" type="password" autocomplete="current-password" required>
                 </label>
-                <button class="admin-danger-button" type="submit">Réinitialiser les données</button>
+                <button class="admin-danger-button" type="submit">Réinitialiser les analytics</button>
                 <p class="admin-maintenance-status" id="admin-maintenance-status" role="status" aria-live="polite"></p>
               </form>
             </details>
@@ -158,7 +158,7 @@
               </article>
               <article class="admin-card admin-audits-card">
                 <div class="admin-card-heading">
-                  <h3>Audits réservés</h3>
+                  <h3>Prospects récents</h3>
                   <button class="admin-card-link" type="button" data-admin-jump="conversions">Voir tout</button>
                 </div>
                 <div class="admin-compact-list" id="overview-audits"></div>
@@ -246,13 +246,13 @@
             </div>
           </section>
 
-          <section class="admin-panel" id="panel-conversions" data-panel-title="Audits & contacts">
+          <section class="admin-panel" id="panel-conversions" data-panel-title="Prospects">
             <div class="admin-section-heading">
               <div>
-                <p class="admin-kicker">Audits et contacts</p>
-                <h2>Suivre toutes les conversions entrantes.</h2>
+                <p class="admin-kicker">Prospects</p>
+                <h2>Suivre tous les prospects entrants.</h2>
               </div>
-              <button class="admin-ghost-button" id="refresh-leads" type="button">Actualiser les contacts</button>
+              <button class="admin-ghost-button" id="refresh-leads" type="button">Actualiser les prospects</button>
             </div>
             <div class="admin-card">
               <div class="admin-table-wrap">
@@ -346,6 +346,6 @@
       </section>
     </main>
 
-    <script src="/admin.js?v=27" type="module"></script>
+    <script src="/admin.js?v=28" type="module"></script>
   </body>
 </html>

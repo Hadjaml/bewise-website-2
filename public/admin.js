@@ -46,7 +46,7 @@ const panelSubtitles = {
   overview: 'Suivez les performances clés de votre site.',
   journey: 'Visualisez le tunnel de lecture, les clics et les sorties.',
   acquisition: 'Identifiez les sources qui amènent les meilleurs prospects.',
-  conversions: 'Centralisez les audits réservés et les messages entrants.',
+  conversions: 'Centralisez les prospects et les messages entrants.',
   seo: 'Mesurez la visibilité organique dès que Search Console est connectée.',
   performance: 'Gardez un œil sur les signaux techniques importants.',
   insights: 'Lisez une synthèse rapide des points à surveiller.',
@@ -288,7 +288,7 @@ function renderOverviewAudits() {
           `
         )
         .join('')
-    : '<div class="admin-empty-state">Les audits et messages apparaîtront ici dès les premières conversions.</div>';
+    : '<div class="admin-empty-state">Les prospects et messages apparaîtront ici dès les premières conversions.</div>';
 }
 
 function renderOverviewSeo() {
@@ -512,8 +512,11 @@ function renderConversions() {
                           <span>${escapeHtml(messagePreview)}</span>
                           <em>Lire</em>
                         </summary>
-                        <p>${escapeHtml(message)}</p>
-                        <a href="tel:${escapeHtml(item.phone || '')}" class="${item.phone ? '' : 'is-disabled'}">${escapeHtml(phone)}</a>
+                        <div class="admin-message-full">
+                          <span>Message complet</span>
+                          <p>${escapeHtml(message)}</p>
+                          <a href="tel:${escapeHtml(item.phone || '')}" class="${item.phone ? '' : 'is-disabled'}">${escapeHtml(phone)}</a>
+                        </div>
                       </details>
                     `
                     : '<span class="admin-muted-cell">—</span>'
@@ -697,13 +700,13 @@ logoutButton.addEventListener('click', async () => {
 refreshDashboardButton.addEventListener('click', loadAnalytics);
 refreshLeadsButton.addEventListener('click', loadAnalytics);
 
-// Maintenance reset stays intentionally small but still requires the admin password.
+// Maintenance reset is deliberately limited to analytics so prospects stay safe.
 adminResetForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const submitButton = adminResetForm.querySelector('button[type="submit"]');
   const password = adminResetPassword.value;
 
-  if (!window.confirm('Réinitialiser définitivement les analytics, audits et contacts de l’admin ?')) return;
+  if (!window.confirm('Réinitialiser les analytics ? Les prospects et leurs messages seront conservés.')) return;
 
   submitButton.disabled = true;
   setStatus(adminMaintenanceStatus, 'Réinitialisation...', null);
@@ -715,7 +718,7 @@ adminResetForm?.addEventListener('submit', async (event) => {
     });
     adminResetForm.reset();
     await loadAnalytics();
-    setStatus(adminMaintenanceStatus, 'Données réinitialisées.', 'success');
+    setStatus(adminMaintenanceStatus, 'Analytics réinitialisées. Prospects conservés.', 'success');
   } catch (error) {
     setStatus(adminMaintenanceStatus, error.message, 'error');
   } finally {
