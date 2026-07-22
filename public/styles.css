@@ -9267,6 +9267,19 @@ body.is-modal-open {
   text-decoration: none;
 }
 
+.admin-muted-cell {
+  color: rgba(225, 230, 255, 0.38);
+}
+
+.admin-message-preview {
+  display: block;
+  max-width: 240px;
+  color: rgba(246, 248, 255, 0.82);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  white-space: normal;
+}
+
 .admin-message-row td {
   padding-top: 0;
   border-bottom-color: rgba(154, 166, 255, 0.16);

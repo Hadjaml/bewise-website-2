@@ -490,7 +490,10 @@ function renderConversions() {
     ? analytics.conversions
         .map((item) => {
           const isContact = item.type === 'Contact';
-          const message = item.message || 'Aucun message renseigné.';
+          const rawMessage = String(item.message || '').trim();
+          const hasMessage = Boolean(rawMessage);
+          const message = rawMessage || 'Aucun message renseigné.';
+          const messagePreview = hasMessage && rawMessage.length > 92 ? `${rawMessage.slice(0, 92).trim()}…` : rawMessage;
           const phone = item.phone || 'Téléphone non renseigné';
           return `
             <tr data-lead-id="${isContact ? escapeHtml(item.id) : ''}">
@@ -502,6 +505,13 @@ function renderConversions() {
               <td>${escapeHtml(item.origin || 'Non renseigné')}</td>
               <td>
                 ${
+                  hasMessage
+                    ? `<span class="admin-message-preview">${escapeHtml(messagePreview)}</span>`
+                    : '<span class="admin-muted-cell">—</span>'
+                }
+              </td>
+              <td>
+                ${
                   isContact
                     ? `<select class="admin-status-select" data-status-select>${renderStatusOptions(item.status)}</select>`
                     : `<span class="admin-status-pill">${escapeHtml(statusLabel(item.status))}</span>`
@@ -509,13 +519,13 @@ function renderConversions() {
               </td>
             </tr>
             ${
-              isContact
+              hasMessage
                 ? `
                   <tr class="admin-message-row">
-                    <td colspan="7">
+                    <td colspan="8">
                       <div class="admin-message-card">
                         <div>
-                          <span>Message</span>
+                          <span>Message complet</span>
                           <p>${escapeHtml(message)}</p>
                         </div>
                         <a href="tel:${escapeHtml(item.phone || '')}" class="${item.phone ? '' : 'is-disabled'}">${escapeHtml(phone)}</a>
@@ -528,7 +538,7 @@ function renderConversions() {
           `;
         })
         .join('')
-    : emptyRow(7, 'Aucune conversion pour le moment.');
+    : emptyRow(8, 'Aucune conversion pour le moment.');
 }
 
 function renderSeo() {
